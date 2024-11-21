@@ -15,7 +15,7 @@ npm install
 ```
 
 ### 3. Iniciar el Servidor de Desarrollo
-Una vez que las dependencias estén instaladas, puedes iniciar el servidor de desarrollo de Vite. Ejecuta el siguiente comando:
+Una vez que las dependencias estén instaladas, puedes iniciar el servidor de desarrollo de **Vite**. Ejecuta el siguiente comando:
 ```bash
 npm run dev
 ```
