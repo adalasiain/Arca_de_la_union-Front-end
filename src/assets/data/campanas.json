@@ -1,0 +1,55 @@
+{
+    "alloys": [
+        {
+            "id": "67343f9a2dbd422a57a2f89e",
+            "type": "cobre",
+            "pricePerKg": 2500
+        },
+        {
+            "id": "67366031ad10010a34a83bf2",
+            "type": "bronce",
+            "pricePerKg": 2300
+        }
+    ],
+    "finishes": [
+        {
+            "id": "673575acbe518f599141c431",
+            "finish": "Barrocco",
+            "description": "Campana de acabado barroco",
+            "images": []
+        },
+        {
+            "id": "6736af8d50a7b1237d2571dc",
+            "finish": "Acero inoxidable",
+            "description": "ewrkfb duiaskc nlnvfcbg ceawn. cgboasefvn,hgbtraecnsk fbvhn cbefvhn geriru",
+            "images": [
+                {
+                    "imageId": "pLT2vHS",
+                    "url": "https://i.ibb.co/pLT2vHS/campana-3.jpg"
+                },
+                {
+                    "imageId": "mvkzqTx",
+                    "url": "https://i.ibb.co/mvkzqTx/campana-2.jpg"
+                },
+                {
+                    "imageId": "QnJ3SpK",
+                    "url": "https://i.ibb.co/QnJ3SpK/camapana-1.jpg"
+                }
+            ]
+        }
+    ],
+    "weightSizes": [
+        {
+            "id": "67297581d5696b4ba0184e1f",
+            "weight": 10,
+            "diameter": 25,
+            "height": 28
+        },
+        {
+            "id": "67366328ad10010a34a83bf5",
+            "weight": 30,
+            "diameter": 45,
+            "height": 49
+        }
+    ]
+}

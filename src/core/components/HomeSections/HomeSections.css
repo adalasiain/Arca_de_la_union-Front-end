@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+.poppins {
+  font-family: "Poppins", serif;
+}
+
+.league-spartan {
+  font-family: "League Spartan", sans-serif;
+}
+
+.circuloFondo {
+  height: 130vh;
+  background-color: #9e9890;
+  opacity: 0.30;
+  border-radius: 50%;
+}
+
+.arrowContainer {
+  display: flex;
+  gap: 0px;
+  align-items: center;
+}
+
+.arrow {
+  border-left: 6px solid white;
+  border-bottom: 6px solid white;
+  transform: rotate(225deg);
+  border-radius: 4px;
+}
+
+.circleContainer {
+  display: grid;
+  grid-template-columns: repeat(6, 20px);
+  grid-template-rows: repeat(4, 20px);
+}
+
+.circle {
+  background-color: white;
+  border-radius: 50%;
+}
+
+.rectangle {
+  background-color: white;
+}
+
+.scrollbar::-webkit-scrollbar {
+  display: none;
+}
