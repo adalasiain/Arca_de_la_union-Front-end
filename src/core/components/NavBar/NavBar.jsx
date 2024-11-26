@@ -7,8 +7,8 @@ function NavBar() {
   return (
     <nav>
       {/* Elemento NavBar */}
-      <div className="bg-[#b87333] w-full z-40 top-0 start-0 px-[1%] md:px-[2%] 2xl:px-[8%]">
-        <div className="max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto p-2 md:p-4">
+      <div className="bg-[#b87333] w-full z-40 top-0 start-0 px-[1%] md:px-[2%] 2xl:px-[8%] ">
+        <div className="max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto p-2 md:p-4 sticky">
           {/* Botón Logo */}
           <button href="#" className="flex items-center space-x-3 rtl:space-x-reverse">
             <img src={logo} className="h-11 md:h-11 px-2 md:px-0" alt="Logo" />
