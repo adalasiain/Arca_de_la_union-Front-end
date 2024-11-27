@@ -1,14 +1,16 @@
 class CampanasService {
     constructor() {
       this.serverUri= "https://arcadelaalianzaserver.onrender.com"
-      // this.serverUri= "http://localhost:5000"
+      // this.serverUri = "http://localhost:8080";
     }
+
     async GetBellOptions() {
       try {
         const response = await fetch(`${this.serverUri}/bells`, {
           method: "GET",
           headers: {
               "Content-Type": "application/json",
+              
             },
            
         });

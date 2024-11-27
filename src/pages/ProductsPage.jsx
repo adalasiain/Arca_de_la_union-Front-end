@@ -10,7 +10,7 @@ const CustomProductPage = () => {
         <NavBar />
         <main className='flex-grow'>
           <h1 className='text-xl font-bold mb-5'>Lista de Productos:</h1>
-          <Link to="/customize-product" className='bg-orange-300'>Personaliza tu Producto</Link>
+          <Link to="/customize-product" className='bg-orange-300 p-2 rounded'>Personaliza tu Producto</Link>
         </main>
         <Footer />
       </div>
