@@ -5,7 +5,7 @@ import Footer from '../core/components/Footer/Footer';
 const CustomProductPage = () => {
     return (
         <>
-            <div className="flex flex-col">
+            <div className="flex flex-col sm:h-screen">
                 <NavBar />
                 <CustomizationProduct className="flex-grow my-4"/>
                 <Footer />
