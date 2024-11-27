@@ -8,7 +8,7 @@ const CustomProductPage = () => {
     <>
       <div className='flex flex-col h-screen'>
         <NavBar />
-        <main className='flex-grow'>
+        <main className='flex-grow text-center'>
           <h1 className='text-xl font-bold mb-5'>Lista de Productos:</h1>
           <Link to="/customize-product" className='bg-orange-300'>Personaliza tu Producto</Link>
         </main>
