@@ -3,6 +3,9 @@ import HomePage from '../pages/HomePage';
 import ProductsPage from '../pages/ProductsPage';
 import CustomProductPage from '../pages/CustomProductPage';
 import ShoppingCart from '../pages/ShoppingCart';
+import GalleryPage from '../pages/GalleryPage';
+import ContactUsPage from '../pages/ContactUsPage';
+import AboutUsPage from '../pages/AboutUsPage';
 
 const Router = createBrowserRouter([
   {
@@ -20,6 +23,18 @@ const Router = createBrowserRouter([
   {
     path: "/shopping-cart",
     element: <ShoppingCart />
+  },
+  {
+    path: '/gallery',
+    element: <GalleryPage />
+  },
+  {
+    path: '/contact-us',
+    element: <ContactUsPage />
+  },
+  {
+    path: '/about-us',
+    element: <AboutUsPage />
   }
 ], {
   future: {
