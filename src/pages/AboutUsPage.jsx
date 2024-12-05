@@ -1,11 +1,12 @@
 import NavBar from '../core/components/NavBar/NavBar';
 import Footer from '../core/components/Footer/Footer';
+import ProjectSection from '../core/components/AboutUsPage/Nosotros';
 
 const AboutUsPage = () => {
     return (
         <>
             <NavBar />
-            <h1 className='font-bold text-center'>Acerca de Nosotros</h1>
+            <ProjectSection/>
             <Footer />
         </>
     );
