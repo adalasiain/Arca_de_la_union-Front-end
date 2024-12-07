@@ -1,8 +1,4 @@
-# React + Vite
+# Importante 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aparte del codigo npm install, hay que utilizar npm install lucide-react para instalar los demas iconos, ya que dará error :D
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
