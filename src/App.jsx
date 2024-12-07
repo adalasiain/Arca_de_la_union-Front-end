@@ -1,11 +1,31 @@
 import React from 'react';
-import Login from './components/Login';
+import { Link } from 'react-router-dom';
+
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Login from './componentes/login';
+import Dashboard from './componentes/dashboard';
+import Productos_img from './componentes/productos_img';
+import Productos_olf from './componentes/productos_olf';
+import ErrorPage from './componentes/error';
+
+import './styles.css';
+import Ventas from './componentes/ventas';
+import ProductInterface from './componentes/productos_campanas';
 
 const App = () => {
   return (
-    <div>
-      <Login />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/ventas" element={<Ventas/>} />
+        <Route path="/productosImagenes" element={<Productos_img />} />
+        <Route path="/productosOlfebreria" element={<Productos_olf />} />
+        <Route path="/productosCampanas" element={<ProductInterface/>} />
+        
+        <Route path="*" element={<ErrorPage />} />
+      </Routes>
+    </Router>
   );
 };
 
