@@ -1,12 +1,12 @@
 import NavBar from '../core/components/NavBar/NavBar';
 import Footer from '../core/components/Footer/Footer';
-import ProjectSection from '../core/components/AboutUsPage/Nosotros';
+import AboutUs from '../core/components/AboutUs/AboutUs';
 
 const AboutUsPage = () => {
     return (
         <>
             <NavBar />
-            <ProjectSection/>
+            <AboutUs/>
             <Footer />
         </>
     );
