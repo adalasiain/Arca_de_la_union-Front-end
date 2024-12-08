@@ -24,15 +24,18 @@ const Cart = () => {
       material: 'Cobre',
       price: 1500.00,
       imgSrc: 'https://cdn-icons-png.flaticon.com/512/570/570975.png',
-    },{
+    }, 
+    {
       id: 4,
       itemName: 'Producto D',
       material: 'Acero',
-      price: 900.00,
+      price: 5100.00,
       imgSrc: 'https://cdn-icons-png.flaticon.com/512/570/570975.png',
     },
     // Aquí podrías agregar más productos si es necesario.
   ];
+
+  const deleteItem = (id) => cartItems.filter((item) => item.id !== id)
 
   const subtotal = cartItems.reduce((acc, item) => acc + item.price, 0);
   const shipping = 500;
@@ -42,7 +45,7 @@ const Cart = () => {
     <div className="grid grid-cols-1 md:grid-cols-3">
       <div className="col-span-2 md:col-span-2 md:p-8">
         <div className="px-5 pt-5">
-        <h1 className="text-2xl font-bold">Carrito de Compras:</h1>
+          <h1 className="text-2xl font-bold">Carrito de Compras:</h1>
         </div>
         <hr className="h-px my-4 bg-gray-200 border-0" />
         {cartItems.map(item => (
@@ -52,6 +55,8 @@ const Cart = () => {
             material={item.material}
             price={item.price}
             imgSrc={item.imgSrc}
+            item={item}
+            delete={deleteItem}
           />
         ))}
       </div>
