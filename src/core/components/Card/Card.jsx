@@ -2,7 +2,7 @@ import React from "react";
 
 const Card = ({ peso, material, tamaño, acabado, precio }) => {
   return (
-    <div className="flex flex-col items-center bg-[#eeeeee] rounded-3xl p-4 w-60 shadow-lg">
+    <div className="flex flex-col items-center bg-[#eeeeee] rounded-3xl p-4 shadow-lg min-w-72 sm:min-w-60">
       {/* Imagen del producto */}
       <div className="flex justify-center w-full bg-[#d8d9de] rounded-3xl">
         <img
@@ -83,7 +83,7 @@ const CardList = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center">
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 p-4">
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 px-2 py-8">
         {cardsData.map((card, index) => (
           <Card key={index} {...card} />
         ))}
