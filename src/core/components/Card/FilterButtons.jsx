@@ -19,7 +19,7 @@ const FilterButtons = ({
   };
 
   return (
-    <div className="flex flex-wrap items-center justify-between gap-4 p-4 bg-orange-100 rounded-lg">
+    <div className="flex flex-wrap items-center justify-between gap-4 p-8">
       {/* Botones de Filtro */}
       <div className="flex flex-wrap gap-4">
         <button
@@ -75,7 +75,7 @@ const FilterButtons = ({
       </div>
 
       {/* Campo de Búsqueda */}
-      <div className="flex items-center w-full md:w-auto bg-white rounded-full">
+      <div className="flex items-center justify-between relative w-full md:w-auto bg-white rounded-full">
         <input
           type="text"
           placeholder={placeholder}
@@ -83,7 +83,7 @@ const FilterButtons = ({
           value={searchTerm}
           onChange={handleSearch}
         />
-        <div className="absolute right-3 rounded-full bg-[#ee9f05] w-12 h-12 flex items-center justify-center">
+        <div className="absolute right-[-0.3em] rounded-full bg-[#ee9f05] w-12 h-12 flex items-center justify-center">
           <svg xmlns="http://www.w3.org/2000/svg" className="text-white w-6 h-6" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="m21 21l-4.343-4.343m0 0A8 8 0 1 0 5.343 5.343a8 8 0 0 0 11.314 11.314"/></svg>
         </div>
       </div>
