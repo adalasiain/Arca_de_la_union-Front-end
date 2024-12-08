@@ -16,7 +16,7 @@ const CartSummary = ({ subtotal, shipping, total }) => {
         <h4 className="text-xl font-bold">Total</h4>
         <p className="text-2xl font-bold">${total}</p>
       </div>
-      <button type="button" className="w-full text-white bg-[#b87333] hover:bg-[#a27648] focus:ring focus:outline-none focus:ring-[#895c23] font-medium rounded-full px-8 py-2.5 me-2 mt-4 mb-2 flex justify-center items-center space-x-2">
+      <button type="button" className="w-full text-white bg-[#b87333] hover:bg-[#a27648] focus:ring focus:outline-none focus:ring-[#895c23] text-lg rounded-full px-8 py-2.5 me-2 mt-4 mb-2 flex justify-center items-center space-x-2">
         <span className="font-bold">Pagar</span>
         <svg
           xmlns="http://www.w3.org/2000/svg"
