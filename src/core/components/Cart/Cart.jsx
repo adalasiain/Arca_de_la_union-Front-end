@@ -42,7 +42,7 @@ const Cart = () => {
   const total = subtotal + shipping;
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3">
+    <div className="grid grid-cols-1 md:grid-cols-3 bg-gray-100">
       <div className="col-span-2 md:col-span-2 md:p-8">
         <div className="px-5 pt-5">
           <h1 className="text-2xl font-bold">Carrito de Compras:</h1>
