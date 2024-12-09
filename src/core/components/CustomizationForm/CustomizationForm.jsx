@@ -1,6 +1,3 @@
-import { useEffect, useState } from "react";
-import CampanasService from "../../../services/CampanasService";
-
 const CustomizationForm = ({
   alloys,
   finishes,

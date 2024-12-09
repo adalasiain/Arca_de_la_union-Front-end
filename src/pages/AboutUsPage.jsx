@@ -5,9 +5,11 @@ import AboutUs from '../core/components/AboutUs/AboutUs';
 const AboutUsPage = () => {
     return (
         <>
-            <NavBar />
-            <AboutUs/>
-            <Footer />
+            <div className='flex flex-col min-h-screen'>
+                <NavBar />
+                <AboutUs/>
+                <Footer />
+            </div>
         </>
     );
 }

@@ -2,7 +2,7 @@ import React from 'react';
 
 const AboutUs = () => {
     return (
-        <div className="flex justify-center min-h-screen bg-[url('/img/backgroundProducts.jpg')] bg-cover sm:bg-center sm:bg-no-repeat py-12">
+        <div className="flex-grow flex justify-center bg-[url('/img/backgroundProducts.jpg')] bg-cover sm:bg-center sm:bg-no-repeat py-12">
             <div className="flex flex-col items-center gap-14 w-[85%] bg-[#eeeeee] bg-opacity-70 rounded-3xl shadow-lg">
                 {/* Sección 1 */}
                 <div className='w-[88%]'>

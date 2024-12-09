@@ -94,7 +94,7 @@ const CardList = ({ filter, searchTerm }) => {
   });
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
+    <div className="flex items-center justify-center">
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 px-2 py-8">
         {filteredCards.map((card, index) => (
           <Card key={index} {...card} />

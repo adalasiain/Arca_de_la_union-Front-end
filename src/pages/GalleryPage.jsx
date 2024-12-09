@@ -4,9 +4,13 @@ import Footer from '../core/components/Footer/Footer';
 const GalleryPage = () => {
     return (
         <>
-            <NavBar />
-            <h1 className='font-bold text-center'>Galería de Imagenes</h1>
-            <Footer />
+            <div className="flex flex-col min-h-screen">
+                <NavBar />
+                <main className='flex-grow'>
+                    <h1 className='font-bold text-center'>Galería de Imagenes</h1>
+                </main>
+                <Footer />
+            </div>
         </>
     );
 }

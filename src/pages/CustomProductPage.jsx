@@ -5,9 +5,9 @@ import Footer from '../core/components/Footer/Footer';
 const CustomProductPage = () => {
     return (
         <>
-            <div className="flex flex-col sm:h-screen">
+            <div className="flex flex-col min-h-screen">
                 <NavBar />
-                <CustomizationProduct className="flex-grow my-4"/>
+                <CustomizationProduct className="my-4"/>
                 <Footer />
             </div>
         </>

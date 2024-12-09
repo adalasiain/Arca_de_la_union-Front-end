@@ -19,7 +19,7 @@ const CustomProductPage = () => {
 
   return (
     <>
-      <div className='flex flex-col h-full'>
+      <div className='flex flex-col h-screen'>
         <NavBar />
         <main className='flex-grow text-center bg-[url("/img/backgroundProducts.jpg")] bg-cover sm:bg-center sm:bg-no-repeat'>
           <FilterButtons 

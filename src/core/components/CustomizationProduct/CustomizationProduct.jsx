@@ -49,7 +49,7 @@ const CustomizationProduct = () => {
   };
 
   return (
-    <main className="flex flex-col items-center justify-center w-full h-full bg-[#b87333] bg-opacity-60 p-4">
+    <main className="flex flex-col flex-grow items-center justify-center w-full h-full bg-[#b87333] bg-opacity-60 p-4">
       <div className="flex flex-col sm:flex-row rounded-3xl bg-[#eeeeee] w-full max-w-6xl mx-auto shadow-lg">
         <ProductDetails
           finishImages={selectedFinish?.images}
