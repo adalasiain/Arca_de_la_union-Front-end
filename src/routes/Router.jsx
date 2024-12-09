@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import HomePage from '../pages/HomePage';
 import ProductsPage from '../pages/ProductsPage';
 import CustomProductPage from '../pages/CustomProductPage';
+import LoginPage from '../pages/LoginPage';
 
 const Router = createBrowserRouter([
   {
@@ -15,6 +16,9 @@ const Router = createBrowserRouter([
   {
     path: "/customize-product",
     element: <CustomProductPage />,
+  },{
+    path:"/login",
+    element: <LoginPage/>
   }
 ], {
   future: {
