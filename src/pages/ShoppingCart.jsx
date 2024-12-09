@@ -5,7 +5,7 @@ import Cart from '../core/components/Cart/Cart';
 const ShoppingCart = () => {
 	return (
 		<>
-            <div className='grid'>
+            <div className='flex flex-col min-h-screen'>
                 <NavBar />
                 <Cart />
                 <Footer />
