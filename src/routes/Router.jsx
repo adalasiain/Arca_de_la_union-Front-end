@@ -6,6 +6,7 @@ import ShoppingCart from '../pages/ShoppingCart';
 import GalleryPage from '../pages/GalleryPage';
 import ContactUsPage from '../pages/ContactUsPage';
 import AboutUsPage from '../pages/AboutUsPage';
+import ErrorPage from '../pages/ErrorPage';
 
 const Router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const Router = createBrowserRouter([
   {
     path: '/about-us',
     element: <AboutUsPage />
+  },
+  {
+    path: '/error',
+    element: <ErrorPage />
   }
 ], {
   future: {
