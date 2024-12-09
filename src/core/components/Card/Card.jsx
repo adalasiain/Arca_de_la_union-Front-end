@@ -69,7 +69,7 @@ const Card = ({ peso, material, tamaño, acabado, precio }) => {
   );
 };
 
-const CardList = () => {
+const CardList = ({ filter, searchTerm }) => {
   const cardsData = [
     { peso: "70 Kg", material: "Bronce", tamaño: "30 x 70 cm", acabado: "Pulido", precio: 599 },
     { peso: "150 Kg", material: "Cobre", tamaño: "90 x 120 cm", acabado: "Esmalte", precio: 999 },
@@ -81,10 +81,22 @@ const CardList = () => {
     { peso: "110 Kg", material: "Aluminio", tamaño: "55 x 95 cm", acabado: "Brillante", precio: 849 },
   ];
 
+  const filteredCards = cardsData.filter((card) => {
+    const matchesFilter = filter === "all" || card.acabado.toLowerCase() === filter.toLowerCase();
+    const matchesSearch = 
+      card.material.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      card.acabado.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      card.tamaño.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      card.peso.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      card.precio.toString().includes(searchTerm);
+    
+    return matchesFilter && matchesSearch;
+  });
+
   return (
     <div className="min-h-screen flex items-center justify-center">
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 px-2 py-8">
-        {cardsData.map((card, index) => (
+        {filteredCards.map((card, index) => (
           <Card key={index} {...card} />
         ))}
       </div>
