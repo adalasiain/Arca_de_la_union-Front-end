@@ -5,9 +5,9 @@ import Footer from '../core/components/Footer/Footer';
 const GalleryPage = () => {
     return (
         <>
-           <div className="flex flex-col min-h-screen">
+            <div className='flex flex-col min-h-screen'>
                 <NavBar />
-                <Gallery/>
+                <Gallery />
                 <Footer />
             </div>
         </>
