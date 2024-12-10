@@ -1,12 +1,12 @@
 import React from "react";
 
-const Card = ({ peso, material, tamaño, acabado, precio }) => {
+const Card = ({ peso, material, tamaño, acabado, precio, imagen }) => {
   return (
     <div className="flex flex-col items-center bg-[#eeeeee] rounded-3xl p-4 shadow-lg min-w-72 sm:min-w-60">
       {/* Imagen del producto */}
       <div className="flex justify-center w-full bg-[#d8d9de] rounded-3xl">
         <img
-          src="/img/img.png"
+          src={imagen}
           alt="Campana"
           className="rounded-lg object-cover w-32 h-40"
         />
@@ -71,14 +71,14 @@ const Card = ({ peso, material, tamaño, acabado, precio }) => {
 
 const CardList = ({ filter, searchTerm }) => {
   const cardsData = [
-    { peso: "70 Kg", material: "Bronce", tamaño: "30 x 70 cm", acabado: "Pulido", precio: 599 },
-    { peso: "150 Kg", material: "Cobre", tamaño: "90 x 120 cm", acabado: "Esmalte", precio: 999 },
-    { peso: "30 Kg", material: "Acero", tamaño: "15 x 30 cm", acabado: "Patina", precio: 299 },
-    { peso: "80 Kg", material: "Hierro", tamaño: "40 x 80 cm", acabado: "Mate", precio: 699 },
-    { peso: "60 Kg", material: "Bronce", tamaño: "35 x 75 cm", acabado: "Satinado", precio: 549 },
-    { peso: "45 Kg", material: "Acero Inoxidable", tamaño: "25 x 60 cm", acabado: "Pulido", precio: 499 },
-    { peso: "90 Kg", material: "Latón", tamaño: "50 x 90 cm", acabado: "Antiguo", precio: 799 },
-    { peso: "110 Kg", material: "Aluminio", tamaño: "55 x 95 cm", acabado: "Brillante", precio: 849 },
+    { peso: "70 Kg", material: "Bronce", tamaño: "30 x 70 cm", acabado: "Pulido", precio: 599, imagen: 'https://cdn-icons-png.flaticon.com/512/1827/1827312.png' },
+    { peso: "150 Kg", material: "Cobre", tamaño: "90 x 120 cm", acabado: "Esmalte", precio: 999, imagen: 'https://cdn-icons-png.flaticon.com/512/1827/1827312.png' },
+    { peso: "30 Kg", material: "Acero", tamaño: "15 x 30 cm", acabado: "Patina", precio: 299, imagen: 'https://cdn-icons-png.flaticon.com/512/1827/1827312.png' },
+    { peso: "80 Kg", material: "Hierro", tamaño: "40 x 80 cm", acabado: "Mate", precio: 699, imagen: 'https://cdn-icons-png.flaticon.com/512/1827/1827312.png' },
+    { peso: "60 Kg", material: "Bronce", tamaño: "35 x 75 cm", acabado: "Satinado", precio: 549, imagen: 'https://cdn-icons-png.flaticon.com/512/1827/1827312.png' },
+    { peso: "45 Kg", material: "Acero Inoxidable", tamaño: "25 x 60 cm", acabado: "Pulido", precio: 499, imagen: 'https://cdn-icons-png.flaticon.com/512/1827/1827312.png' },
+    { peso: "90 Kg", material: "Latón", tamaño: "50 x 90 cm", acabado: "Antiguo", precio: 799, imagen: 'https://cdn-icons-png.flaticon.com/512/1827/1827312.png' },
+    { peso: "110 Kg", material: "Aluminio", tamaño: "55 x 95 cm", acabado: "Brillante", precio: 849, imagen: 'https://cdn-icons-png.flaticon.com/512/1827/1827312.png' },
   ];
 
   const filteredCards = cardsData.filter((card) => {
