@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Home } from 'lucide-react';
 import { FaBoxes } from "react-icons/fa";
 import { GiMoneyStack } from "react-icons/gi";
@@ -8,6 +8,7 @@ import { Plus, ChevronRight } from 'lucide-react';
 import { FaArrowAltCircleRight } from "react-icons/fa";
 import { FaAngleDoubleDown } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import VentasService from '../services/ventasService';
 
 const Ventas = () => {
   const [activeTab, setActiveTab] = useState("En Proceso");
@@ -15,6 +16,7 @@ const Ventas = () => {
   const [trabajosEnProceso, setTrabajosEnProceso] = useState([]);
   const [trabajosTerminados, setTrabajosTerminados] = useState([]);
   const [trabajoSeleccionado, setTrabajoSeleccionado] = useState(null);
+  const [ventas, setVentas] = useState(null);
 
   const [nuevoTrabajo, setNuevoTrabajo] = useState({
     fecha: '',
@@ -24,6 +26,15 @@ const Ventas = () => {
     descripcion: '',
     costoFinal: ''
   });
+
+const ventasS =new  VentasService()
+  useEffect(()=>{
+    async function getVentas(){
+      const data = await ventasS.getVentas()
+      setVentas(data)
+    }
+    getVentas()
+  },[])
 
   // Función para añadir un nuevo trabajo
   const handleNuevoTrabajo = () => {
@@ -110,6 +121,11 @@ const Ventas = () => {
 
       {/* Lista de Trabajos */}
       <div className="p-3 rounded-xl ml-48 mt-5 bg-div w-[70%] h-[400px] justify-center">
+        {
+          ventas?.map((venta)=>{
+            <h1 className='bg-red-500'>{venta?.orderId}</h1>
+          })
+        }
         {activeTab === "En Proceso" ? (
           trabajosEnProceso.map((trabajo, index) => (
             <div key={index} className="bg-white rounded my-2 p-4 relative">

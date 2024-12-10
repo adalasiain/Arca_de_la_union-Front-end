@@ -4,15 +4,19 @@ import '../styles.css';
 import img1 from '../assets/image.png'
 import logo from '../assets/logo.png'
 import { Link } from 'react-router-dom';
+import AuthService from '../services/AuthService';
 
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = (e) => {
+  const auth= new AuthService()
+
+  const handleSubmit =async (e) => {
     e.preventDefault();
-    console.log('Usuario:', username, 'Contraseña:', password);
+    
+    await auth.login(username,password)
   };
 
   return (
