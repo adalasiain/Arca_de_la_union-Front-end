@@ -121,12 +121,41 @@ const ventasS =new  VentasService()
 
       {/* Lista de Trabajos */}
       <div className="p-3 rounded-xl ml-48 mt-5 bg-div w-[70%] h-[400px] justify-center">
-        {
-          ventas?.map((venta)=>{
-            <h1 className='bg-red-500'>{venta?.orderId}</h1>
-          })
-        }
+      <table className="table-auto w-full border border-gray-200">
+          <thead>
+            <tr className="bg-gray-100">
+              <th className="px-4 py-2 border">Customer</th>
+              <th className="px-4 py-2 border">Alloy</th>
+              <th className="px-4 py-2 border">Finish</th>
+              <th className="px-4 py-2 border">Weight Size</th>
+              <th className="px-4 py-2 border">total</th>
+            </tr>
+          </thead>
+          <tbody>
+            {ventas?.map((order, index) => (
+              <tr
+                key={order.orderId}
+                className={`border ${
+                  !order.customer || !order.alloy || !order.finish || !order.weightSize
+                    ? "bg-red-100"
+                    : "bg-white"
+                }`}
+              >
+                
+                <td className="px-4 py-2 border">
+                  {order.customer ? order?.customer?.name : "N/A"}
+                </td>
+                <td className="px-4 py-2 border">{order?.alloy?.type || "N/A"}</td>
+                <td className="px-4 py-2 border">{order?.finish?.finish || "N/A"}</td>
+                <td className="px-4 py-2 border">{order?.weightSize?.weight || "N/A"}</td>
+                <td className="px-4 py-2 border">{order?.totalPrice || "N/A"}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
         {activeTab === "En Proceso" ? (
+
+          
           trabajosEnProceso.map((trabajo, index) => (
             <div key={index} className="bg-white rounded my-2 p-4 relative">
               <div className="flex justify-between items-center">
