@@ -19,7 +19,6 @@ const Card = ({ peso, material, tamaño, acabado, precio, imagen, isCustom }) =>
           <h2 className="font-bold text-gray-800">¡Personaliza tu producto!</h2>
           <p>Haz que sea único</p>
           <p>¡Elige todos los detalles!</p>
-          <p>Hecho a tu medida</p>
           <button className="mt-6 text-white text-center uppercase font-bold bg-[#ee9f05] hover:bg-[#be8d2e] focus:ring-4 focus:outline-none focus:ring-orange-300 rounded-full px-4 py-3">
             <div className="flex items-center justify-center">
               <p>Personalizar</p>
@@ -37,40 +36,6 @@ const Card = ({ peso, material, tamaño, acabado, precio, imagen, isCustom }) =>
             <li><strong>Tamaño:</strong> {tamaño}</li>
             <li><strong>Acabado:</strong> {acabado}</li>
           </ul>
-        </div>
-      )}
-
-      {/* Estrellas y Calificación */}
-      {!isCustom && (
-        <div className="flex items-center mt-4">
-          <div className="flex items-center space-x-1 rtl:space-x-reverse">
-            {Array(4)
-              .fill(0)
-              .map((_, index) => (
-                <svg
-                  key={index}
-                  className="w-4 h-4 text-yellow-400"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 22 20"
-                >
-                  <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                </svg>
-              ))}
-            <svg
-              className="w-4 h-4 text-gray-300"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="currentColor"
-              viewBox="0 0 22 20"
-            >
-              <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-            </svg>
-          </div>
-          <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded ml-3">
-            5.0
-          </span>
         </div>
       )}
 
