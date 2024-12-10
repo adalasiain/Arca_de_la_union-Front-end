@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './HomeSections.css';
 import { useCarousel } from './Carousel';
 import fondo from '../../../assets/img/fondo.jpg';
@@ -82,7 +83,9 @@ function HomeSections() {
               </div>
               <div className="grid grid-cols-12 gap-0 pb-0 md:pb-14">
                 <div className="col-span-12 pl-3">
-                  <button type="button" className="poppins text-base md:text-xl xl:text-2xl 2xl:text-3xl font-bold flex items-center text-white px-8 py-2 bg-[#b87333] hover:bg-[#ee9f05] focus:ring focus:outline-none focus:ring-[#ffbb05] rounded-full text-center">GALERÍA<svg className="w-6 h-6 md:w-7 md:h-7 xl:w-8 xl:h-8 2xl:w-10 2xl:h-10 ml-1 md:ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="white" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"><circle cx="12" cy="12" r="9"/><path d="m11 15l3-3l-3-3"/></g></svg></button>
+                  <Link to="/gallery">
+                    <button type="button" className="poppins text-base md:text-xl xl:text-2xl 2xl:text-3xl font-bold flex items-center text-white px-8 py-2 bg-[#b87333] hover:bg-[#ee9f05] focus:ring focus:outline-none focus:ring-[#ffbb05] rounded-full text-center">GALERÍA<svg className="w-6 h-6 md:w-7 md:h-7 xl:w-8 xl:h-8 2xl:w-10 2xl:h-10 ml-1 md:ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="white" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"><circle cx="12" cy="12" r="9"/><path d="m11 15l3-3l-3-3"/></g></svg></button>
+                  </Link>
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-0 hidden md:grid">
