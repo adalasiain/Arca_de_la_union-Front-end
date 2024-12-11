@@ -21,10 +21,10 @@ const Router = createBrowserRouter([
     path: "/customize-product",
     element: <CustomProductPage />
   },
-  {
+  /*{
     path: "/shopping-cart",
     element: <ShoppingCart />
-  },
+  },*/
   {
     path: '/gallery',
     element: <GalleryPage />
