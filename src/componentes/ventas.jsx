@@ -8,6 +8,7 @@ import { Plus, ChevronRight } from 'lucide-react';
 import { FaArrowAltCircleRight } from "react-icons/fa";
 import { FaAngleDoubleDown } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import Header from './Header';
 
 const Ventas = () => {
   const [activeTab, setActiveTab] = useState("En Proceso");
@@ -54,33 +55,7 @@ const Ventas = () => {
   return (
     <div>
       {/* Navbar */}
-      <header className="bg-base text-white relative h-16 w-full">
-        <nav className="container mx-auto flex items-center justify-between px-32 py-2">
-          <Link to="/dashboard" className=""  >
-            <button className="bg-white hover:bg-letras p-3 rounded-full">
-              <Home className="h-6 w-6 text-base" />
-            </button>
-          </Link>
-          <Link to="/productosCampanas" className=""  >
-            <button className="text-2xl font-serif w-40 flex justify-center hover:text-letras">
-              <FaBoxes className="mr-2 mt-1" />
-              Productos
-            </button>
-          </Link>
-          <Link to="/ventas" className=""  >
-            <button className="text-2xl font-serif w-40 flex justify-center text-letras">
-              <GiMoneyStack className="mr-2 mt-1" />
-              Ventas
-            </button>
-          </Link>
-          <Link to="/" className=""  >
-            <button className="text-2xl font-serif w-40 flex justify-center hover:text-letras">
-              <BiLogOut className="mr-2 mt-1" />
-              Salir
-            </button>
-          </Link>
-        </nav>
-      </header>
+      <Header/>
 
       {/* Filtro */}
       <section className="py-3 mt-4 mb-4 flex justify-center space-x-6">

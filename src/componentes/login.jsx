@@ -3,16 +3,28 @@ import React, { useState } from 'react';
 import '../styles.css';
 import img1 from '../assets/image.png'
 import logo from '../assets/logo.png'
-import { Link } from 'react-router-dom';
+import { Link , useNavigate } from 'react-router-dom';
+import AuthService from '../services/AuthService';
 
 
 const Login = () => {
+  const auth = new AuthService();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Usuario:', username, 'Contraseña:', password);
+    try {
+      const data = await auth.login(username, password);
+      console.log('Usuario autenticado:', data);
+      // Redirigir a otra página o actualizar el estado de la app
+      navigate('/dashboard')
+    } catch (error) {
+      setError('Error al iniciar sesión. Verifica tus credenciales.');
+    }
+    
   };
 
   return (
@@ -30,6 +42,7 @@ const Login = () => {
       <div className="flex-1 flex items-center flex-col items-center justify-center p-8 bg-white shadow-md">
         <h1 className="text-4xl text-colorCafe1 mb-6 font-bold">Bienvenido de regreso!</h1>
         <form className="w-full max-w-sm text-center" onSubmit={handleSubmit}>
+        {error && <p style={{ color: 'red' }}>{error}</p>}
           <div className="mb-6">
 
             <input

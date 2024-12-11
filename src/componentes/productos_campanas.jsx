@@ -7,6 +7,7 @@ import { GiMoneyStack } from "react-icons/gi";
 import { BiLogOut } from "react-icons/bi";
 import { Plus, X } from 'lucide-react';
 import { Link } from "react-router-dom";
+import Header from './Header';
 
 const ProductInterface = () => {
   // const [activeTab, setActiveTab] = useState("Campanas");
@@ -37,41 +38,15 @@ const ProductInterface = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-red-500">
       {/* Navbar */}
-      <header className="bg-base text-white relative h-16 w-full">
-        <nav className="container mx-auto flex items-center justify-between px-32 py-2">
-          <Link to="/dashboard" className=""  >
-            <button className="bg-white hover:bg-letras p-3 rounded-full">
-              <Home className="h-6 w-6 text-base" />
-            </button>
-          </Link>
-          <Link to="/productosCampanas" className=""  >
-            <button className="text-2xl font-serif w-40 flex justify-center text-letras">
-              <FaBoxes className="mr-2 mt-1" />
-              Productos
-            </button>
-          </Link>
-          <Link to="/ventas" className=""  >
-            <button className="text-2xl font-serif w-40 flex justify-center hover:text-letras">
-              <GiMoneyStack className="mr-2 mt-1" />
-              Ventas
-            </button>
-          </Link>
-          <Link to="/" className=""  >
-            <button className="text-2xl font-serif w-40 flex justify-center hover:text-letras">
-              <BiLogOut className="mr-2 mt-1" />
-              Salir
-            </button>
-          </Link>
-        </nav>
-      </header>
+      <Header/>
 
       {/* Filtro */}
       <section className="py-3 mt-4 mb-4 flex justify-center space-x-6">
 
         <button
-          className='bg-base flex rounded-full text-white text-center absolute right-20'
+          className='bg-base border flex rounded-full text-white text-center absolute right-20'
           onClick={() => setIsModalOpen(true)}
         >
           <p className='pl-3 pt-[6px]'>Nuevo Elemento</p>
@@ -85,7 +60,7 @@ const ProductInterface = () => {
             <button
               className="px-6 py-2 text-sm font-medium rounded-full transition border border-base hover:shadow bg-base text-white"
               onClick={() => console.log("Botón clicado")}>
-              Campanas
+              Campanasfdfgdfd
             </button>
           </Link>
           <Link to="/productosImagenes" className="p-2"  >
@@ -159,8 +134,10 @@ const ProductInterface = () => {
       )}
 
       {/* Contenedor de elementos */}
-      <div className="container px-4 flex items-center justify-center">
-        <div className="bg-gray-200 w-[80%] h-96 rounded-lg grid grid-cols-3 gap-4 pl-8">
+      <div className="container h-24 bg-red-500 w-full px-4 flex items-center justify-center">
+
+      
+        <div className="bg-gray-300 w-[80%] h-96 rounded-lg grid grid-cols-3 gap-4 pl-8">
           <div className="relative w-72 pt-2">
             <button onClick={() => setIsOpen(!isOpen)} className="w-full bg-white border border-base rounded-full px-6 py-2 text-black flex justify-between items-center">
               Material

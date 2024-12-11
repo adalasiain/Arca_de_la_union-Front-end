@@ -9,8 +9,12 @@ import { GrStakeholder } from "react-icons/gr";
 import { IoPricetagsOutline } from "react-icons/io5";
 import { Home } from 'lucide-react';
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import Header from "./Header";
 
 const Dashboard = () => {
+
+  const {isLoggedIn} = useAuth()
 
     const [productsCount, setProductsCount] = useState(0);
     const [ordersCount, setOrdersCount] = useState(0);
@@ -42,36 +46,14 @@ const Dashboard = () => {
     return (
         <div className="flex flex-col items-center bg-gray-50 min-h-screen">
   {/* Menú Superior */}
-  <header className="bg-base text-white relative h-16 w-full">
-    <nav className="container mx-auto flex items-center justify-between px-32 py-2">
-      <Link to="/dashboard">
-        <button className="bg-letras p-3 rounded-full">
-          <Home className="h-6 w-6 text-base" />
-        </button>
-      </Link>
-      <Link to="/productosCampanas">
-        <button className="text-2xl font-serif w-40 flex justify-center hover:text-letras">
-          <FaBoxes className="mr-2 mt-1" />
-          Productos
-        </button>
-      </Link>
-      <Link to="/ventas">
-        <button className="text-2xl font-serif w-40 flex justify-center hover:text-letras">
-          <GiMoneyStack className="mr-2 mt-1" />
-          Ventas
-        </button>
-      </Link>
-      <Link to="/">
-        <button className="text-2xl font-serif w-40 flex justify-center hover:text-letras">
-          <BiLogOut className="mr-2 mt-1" />
-          Salir
-        </button>
-      </Link>
-    </nav>
-  </header>
+  <Header/>
 
   {/* Contenedor Principal */}
   <div className="flex flex-col items-center max-w-6xl mx-auto p-4 relative w-screen">
+    <p>
+      {isLoggedIn ? "si" : "no"}
+    </p>
+    
     {/* Ilustración Central */}
     <div className="flex justify-center my-8 z-10">
       <img src={img1} alt="Arca de la Alianza" className="logo mb-4" />
