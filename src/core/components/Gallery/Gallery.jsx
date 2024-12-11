@@ -1,20 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import ProductosService from '../../../services/ProductosServices';
 
 const Gallery = () => {
   const [activeIndex, setActiveIndex] = useState(3);
+  const [products, setProducts] = useState([]);
 
-  const projects = [
-    { id: 1, title: 'Campana #1', description: 'Descripción detallada del proyecto Campana #1 que muestra la innovación y creatividad.', imageUrl: '/src/assets/img/campana_1.jpg' },
-    { id: 2, title: 'Campana #2', description: 'Descripción detallada del proyecto Campana #2 con todos los detalles importantes.', imageUrl: '/src/assets/img/campana_2.jpg' },
-    { id: 3, title: 'Campana #3', description: 'Descripción detallada del proyecto Campana #3 resaltando sus características únicas.', imageUrl: '/src/assets/img/campana_3.jpg' },
-    { id: 4, title: 'Campana #4', description: 'Descripción detallada del proyecto Campana #4 mostrando su impacto y valor.', imageUrl: '/src/assets/img/campana_2.jpg' },
-    { id: 5, title: 'Campana #5', description: 'Descripción detallada del proyecto Campana #5 con su enfoque innovador.', imageUrl: '/src/assets/img/campana_1.jpg' },
-    { id: 6, title: 'Campana #6', description: 'Descripción detallada del proyecto Campana #6 y sus logros principales.', imageUrl: '/src/assets/img/campana_2.jpg' },
-    { id: 7, title: 'Campana #7', description: 'Descripción detallada del proyecto Campana #7 revelando su potencial.', imageUrl: '/src/assets/img/campana_3.jpg' }
-  ];
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const productosService = new ProductosService();
+      const productData = await productosService.GetProductsList(); // Obtenemos los productos
+      setProducts(productData); // Guardamos los productos en el estado
+    };
 
-  const handleNext = () => setActiveIndex((prev) => (prev === projects.length - 1 ? 0 : prev + 1));
-  const handlePrev = () => setActiveIndex((prev) => (prev === 0 ? projects.length - 1 : prev - 1));
+    fetchProducts();
+  }, []);
+
+  const handleNext = () => setActiveIndex((prev) => (prev === products?.length - 1 ? 0 : prev + 1));
+  const handlePrev = () => setActiveIndex((prev) => (prev === 0 ? products?.length - 1 : prev - 1));
 
   const getVisibleProjects = () => {
     const visibleCount = 7;
@@ -22,9 +24,9 @@ const Gallery = () => {
     let items = [];
     for (let i = -half; i <= half; i++) {
       let index = activeIndex + i;
-      if (index < 0) index = projects.length + index;
-      if (index >= projects.length) index = index - projects.length;
-      items.push({ project: projects[index], position: i });
+      if (index < 0) index = products?.length + index;
+      if (index >= products?.length) index = index - products?.length;
+      items.push({ project: products[index], position: i });
     }
     return items;
   };
@@ -164,39 +166,35 @@ const Gallery = () => {
       
       <div style={styles.navigationContainer}>
         {getVisibleProjects().map(({ project, position }) => (
-          <div 
-            key={project.id}
-            style={getProjectStyles(position)}
-          >
+          <div key={`${project?.id}-${position}`} style={getProjectStyles(position)}>
             <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column' }}>
               <div style={{ flex: 1, padding: '1rem' }}>
                 <div style={{ width: '100%', height: '100%', borderRadius: '3rem', overflow: 'hidden' }}>
                   <img
-                    src={project.imageUrl}
-                    alt={project.title}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    src={project?.image.url} // Usa la URL de la imagen del producto
+                    alt={project?.name}
+                    style={{ width: '100%', maxHeight: '250px', height: '100%', objectFit: 'cover' }}
                   />
                 </div>
               </div>
               <div style={{ flex: 1, padding: '1rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                 <div>
-                  <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', color: '#78350F', marginBottom: '0.5rem' }}>{project.title}</h3>
-                  <p style={{ fontSize: '0.875rem', color: '#4A5568', overflow: 'hidden', display: '-webkit-box', WebkitBoxOrient: 'vertical', WebkitLineClamp: 3 }}>{project.description}</p>
+                  <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', color: '#78350F', marginBottom: '0.5rem' }}>{project?.name}</h3>
+                  <p style={{ fontSize: '0.875rem', color: '#4A5568', overflow: 'hidden', display: '-webkit-box', WebkitBoxOrient: 'vertical', WebkitLineClamp: 3 }}>
+                    {project?.description}
+                  </p>
                 </div>
               </div>
             </div>
           </div>
         ))}
 
-        {/* Botones de Navegación */}
         <button
           onClick={handlePrev}
           style={{ ...styles.button, ...styles.buttonLeft }}
           aria-label="Anterior"
-          onMouseEnter={(e) => e.target.style.backgroundColor = 'rgba(184, 115, 51, 1)'}
-          onMouseLeave={(e) => e.target.style.backgroundColor = 'rgba(184, 115, 51, 0.7)'}
         >
-          <svg xmlns="http://www.w3.org/2000/svg" className='w-6 h-6' viewBox="0 0 24 24">
+          <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" viewBox="0 0 24 24">
             <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m11 17l-5-5l5-5m7 10l-5-5l5-5"/>
           </svg>
         </button>
@@ -204,8 +202,6 @@ const Gallery = () => {
           onClick={handleNext}
           style={{ ...styles.button, ...styles.buttonRight }}
           aria-label="Siguiente"
-          onMouseEnter={(e) => e.target.style.backgroundColor = 'rgba(184, 115, 51, 1)'}
-          onMouseLeave={(e) => e.target.style.backgroundColor = 'rgba(184, 115, 51, 0.7)'}
         >
           <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 -scale-x-100" viewBox="0 0 24 24">
             <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m11 17l-5-5l5-5m7 10l-5-5l5-5"/>
