@@ -15,14 +15,13 @@ const Card = ({ peso, material, tamaño, acabado, precio, imagen, isCustom, onAd
 
       {/* Detalles del producto */}
       {isCustom ? (
-      <div className="mt-4 text-center">
+      <div className="mt-3 text-center">
           <h2 className="font-bold text-gray-800">¡Personaliza tu producto!</h2>
           <p>Haz que sea único</p>
           <p>¡Elige todos los detalles!</p>
-          <p>Hecho a tu medida</p>
           <button 
             onClick={onCustomize}
-            className="mt-6 text-white text-center uppercase font-bold bg-[#ee9f05] hover:bg-[#be8d2e] focus:ring-4 focus:outline-none focus:ring-orange-300 rounded-full px-4 py-3"
+            className="mt-4 text-white text-center uppercase font-bold bg-[#ee9f05] hover:bg-[#be8d2e] focus:ring-4 focus:outline-none focus:ring-orange-300 rounded-full px-4 py-2.5"
           >
             <div className="flex items-center justify-center">
               <p>Personalizar</p>
@@ -238,7 +237,7 @@ const CardList = ({ filter, searchTerm, onCustomize }) => {
                 <span className="text-xl font-bold">Total:</span>
                 <span className="text-xl font-bold">${cart.reduce((sum, item) => sum + item.precio, 0)}</span>
               </div>
-              <button onClick={handlePayment} className="w-full mt-4 bg-green-500 text-white py-2 rounded-full hover:bg-green-600">
+              <button onClick={handlePayment} className="w-full mt-6 bg-green-500 text-white text-lg font-bold py-2 rounded-full hover:bg-green-600">
                 Pagar
               </button>
             </>
