@@ -11,6 +11,7 @@ import ErrorPage from './componentes/error';
 import './styles.css';
 import Ventas from './componentes/ventas';
 import ProductInterface from './componentes/productos_campanas';
+import CampanasAdmin from './componentes/AdminCampanas';
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
         <Route path="/" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/ventas" element={<Ventas/>} />
+        <Route path="/campanas" element={<CampanasAdmin/>} />
         <Route path="/productosImagenes" element={<Productos_img />} />
         <Route path="/productosOlfebreria" element={<Productos_olf />} />
         <Route path="/productosCampanas" element={<ProductInterface/>} />
