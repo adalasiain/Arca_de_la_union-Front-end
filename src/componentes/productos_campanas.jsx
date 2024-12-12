@@ -38,7 +38,7 @@ const ProductInterface = () => {
   };
 
   return (
-    <div className="min-h-screen bg-red-500">
+    <div className="flex flex-col items-center bg-amber-100 min-h-screen w-full overflow-x-hidden">
       {/* Navbar */}
       <Header/>
 
@@ -134,10 +134,10 @@ const ProductInterface = () => {
       )}
 
       {/* Contenedor de elementos */}
-      <div className="container h-24 bg-red-500 w-full px-4 flex items-center justify-center">
+      <div className="  w-full px-4 flex items-center justify-center">
 
       
-        <div className="bg-gray-300 w-[80%] h-96 rounded-lg grid grid-cols-3 gap-4 pl-8">
+        {/* <div className="bg-gray-300 w-[80%] h-96 rounded-lg grid grid-cols-3 gap-4 pl-8">
           <div className="relative w-72 pt-2">
             <button onClick={() => setIsOpen(!isOpen)} className="w-full bg-white border border-base rounded-full px-6 py-2 text-black flex justify-between items-center">
               Material
@@ -188,7 +188,7 @@ const ProductInterface = () => {
               ))}
             </ul>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

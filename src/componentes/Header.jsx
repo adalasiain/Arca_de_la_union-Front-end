@@ -6,8 +6,8 @@ import { Link } from "react-router";
 
 function Header(){
     return(
-  <header className="bg-base text-white  h-16 w-full sticky top-0">
-  <nav className="container mx-auto flex items-center justify-between px-32 py-2 font-sans">
+  <header className="bg-base text-white  h-full w-screen sticky z-50 top-0">
+  <nav className=" mx-auto flex items-center flex-wrap justify-between px-32 py-2 font-sans">
     <Link to="/dashboard">
       <button className="bg-letras p-3 rounded-full">
         <Home className="h-6 w-6 text-base" />
@@ -19,7 +19,7 @@ function Header(){
         Campanas
       </button>
       </Link>
-    <Link to="/productosCampanas">
+    <Link to="/productos">
       <button className="text-2xl  w-40 flex justify-center hover:text-letras">
         <FaBoxes className="mr-2 mt-1" />
         Productos

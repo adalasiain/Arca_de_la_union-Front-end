@@ -87,18 +87,18 @@ function AdminCampanas() {
     const [selectedSection, setSelectedSection] = useState("aleaciones")
 
     const handleAddFinish = (newfinish) => {
-        setFinishes([...finishes, newfinish])
+        setAcabados([...acabados, newfinish])
     }
 
 
 
-    return (<div className="flex flex-col items-center bg-gray-50 min-h-screen">
+    return (<div className="flex flex-col items-center bg-amber-100 min-h-screen w-full overflow-x-hidden">
         {/* Menú Superior */}
         <Header />
         <h1 className="text-3xl py-3 font-bold flex font-letras items-center gap-5">  <Bell size={50} /> Adminstracion de Campanas</h1>
 
         <main className="w-full h-full px-10 flex flex-col md:flex-row gap-2">
-            <div className="bg-gray-300 md:w-1/5 w-full h-full rounded shadow border">
+            <div className="bg-white md:w-1/5 w-full h-full rounded shadow border">
                 <nav className='flex md:flex-col flex-row justify-center w-full  rounded gap-4 p-3'>
                     <button
                         className={`px-6 py-2 text-sm font-medium rounded-full transition border ${selectedSection === "aleaciones" && "bg-base text-white"} border-base text-base hover:shadow `}
@@ -119,7 +119,7 @@ function AdminCampanas() {
 
             </div>
             {
-                selectedSection === "aleaciones" && <div className="bg-gray-300 w-full h-[80] rounded shadow px-5 py-3">
+                selectedSection === "aleaciones" && <div className="w-full  rounded  px-5 py-3">
                     <div className="flex px-5 py-2 border-b-2 border-base justify-between items-center">
                         <h1 className="text-4xl font-medium">
                             Aleaciones
@@ -167,7 +167,7 @@ function AdminCampanas() {
                 </div>
             }
             {
-                selectedSection === "acabados" && <div className="bg-gray-300 w-full h-[80] rounded shadow px-5 py-3">
+                selectedSection === "acabados" && <div className="w-full  rounded  px-5 py-3">
                     <div className="flex px-5 py-2 border-b-2 border-base justify-between items-center">
                         <h1 className="text-4xl font-medium">
                             Acabados
@@ -182,7 +182,7 @@ function AdminCampanas() {
                             </p>
                         </button>
                     </div>
-                    <div className="grid  sm:grid-cols-2  gap-2 p-5">
+                    <div className="grid  sm:grid-cols-2 md:grid-cols-3  gap-2 p-5">
                         {acabados?.map((acabado) =>
                             <AcabadoCard acabado={acabado} onEdit={onEdit} handleTrash={onDeleteFinish} />
                         )}
@@ -192,7 +192,7 @@ function AdminCampanas() {
                 </div>
             }
             {
-                selectedSection === "pesos" && <div className="bg-gray-300 w-full h-[80] rounded shadow px-5 py-3">
+                selectedSection === "pesos" && <div className="w-full  px-5 py-3">
                     <div className="flex px-5 py-2 border-b-2 border-base justify-between items-center">
                         <h1 className="text-4xl font-medium">
                             Tamaños y Peso
@@ -302,7 +302,7 @@ const AcabadoCard = ({ acabado, onEdit, handleTrash }) => {
 
 
                 {acabado.images?.length > 0 ? (
-                    <div className="relative mb-4 w-1/3  ">
+                    <div className="relative  mb-4  sm:w-1/2  ">
                         <div className="overflow-hidden rounded-lg ">
                             <img
                                 src={acabado.images[currentIndex]?.url}
@@ -329,7 +329,7 @@ const AcabadoCard = ({ acabado, onEdit, handleTrash }) => {
             </div>
 
             <hr className="border-base my-4" />
-            <aside className="flex gap-2 justify-end mt-3">
+            <aside className="flex flex-col  gap-2 justify-end mt-3">
                 <button
                     className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded flex items-center gap-2"
                     onClick={onEdit}
@@ -586,6 +586,7 @@ const ModalFinish = ({ isModalOpen, setIsModalOpen, handleAddFinish }) => {
 
 
 const AddAcabadoModal = ({ isModalOpen, onClose, onAddAcabado }) => {
+    const bellService = new CampanaService()
     const [nombre, setNombre] = useState("");
     const [descripcion, setDescripcion] = useState("");
     const [imagenes, setImagenes] = useState([]);
@@ -594,25 +595,22 @@ const AddAcabadoModal = ({ isModalOpen, onClose, onAddAcabado }) => {
     const handleAgregarImagen = (e) => {
         e.preventDefault();
         if (imagen) {
-            setImagenes([...imagenes, imagen]);
+            setImagenes(prevImg => [...prevImg, imagen]);
             setImagen(null);
         }
     };
-
     const handleEliminarImagen = (index) => {
         const nuevasImagenes = [...imagenes];
         nuevasImagenes.splice(index, 1);
         setImagenes(nuevasImagenes);
     };
 
-    const handleAgregarAcabado = (e) => {
+    const handleAgregarAcabado = async (e) => {
         e.preventDefault();
-        const nuevoAcabado = {
-            nombre,
-            descripcion,
-            imagenes,
-        };
-        onAddAcabado(nuevoAcabado);
+
+        const nuevoAcabado = { finish: nombre, description: descripcion };
+        await bellService.AddAcabado(nuevoAcabado, imagenes)
+
         setNombre("");
         setDescripcion("");
         setImagenes([]);
@@ -679,7 +677,7 @@ const AddAcabadoModal = ({ isModalOpen, onClose, onAddAcabado }) => {
                                             key={index}
                                             className="relative w-24 h-24 border rounded overflow-hidden"
                                         >
-                                            <img src={img} alt={`Imagen ${index + 1}`} className="w-full h-full object-cover" />
+                                            <img src={URL.createObjectURL(img)} alt={`Imagen ${index + 1}`} className="w-full h-full object-cover" />
                                             <button
                                                 className="absolute top-1 right-1 bg-red-500 hover:bg-red-700 text-white rounded-full p-1 text-xs"
                                                 onClick={() => handleEliminarImagen(index)}
@@ -694,7 +692,7 @@ const AddAcabadoModal = ({ isModalOpen, onClose, onAddAcabado }) => {
                                         className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                         id="imagen"
                                         type="file"
-                                        onChange={(e) => setImagen(URL.createObjectURL(e.target.files[0]))}
+                                        onChange={(e) => setImagen(e.target.files[0])}
                                     />
                                     <button
                                         className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
@@ -706,7 +704,7 @@ const AddAcabadoModal = ({ isModalOpen, onClose, onAddAcabado }) => {
                             </div>
                             {/* Botones */}
                             <div className="flex justify-end gap-4">
-                                
+
                                 <button
                                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                                     onClick={handleAgregarAcabado}

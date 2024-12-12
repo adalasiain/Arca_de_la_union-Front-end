@@ -24,7 +24,7 @@ const App = () => {
         <Route path="/dashboard" element={isLoggedIn ? <Dashboard /> : <Navigate to="/" />} />
         <Route path="/ventas" element={<Ventas />} />
         <Route path="/campanas" element={<AdminCampanas />} />
-        <Route path="/productosImagenes" element={<Productos_img />} />
+        <Route path="/productos" element={<Productos_img />} />
         <Route path="/productosOlfebreria" element={<Productos_olf />} />
         <Route path="/productosCampanas" element={<ProductInterface />} />
         <Route path="*" element={<ErrorPage />} />

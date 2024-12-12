@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Home } from 'lucide-react';
+import { DollarSign, Edit, Home, LucidePenTool, Paintbrush, Ruler } from 'lucide-react';
 import { Plus, X } from 'lucide-react';
 import { BiSolidOffer } from "react-icons/bi";
 import { FaBoxes } from "react-icons/fa";
@@ -8,6 +8,7 @@ import { GiMoneyStack } from "react-icons/gi";
 import { BiLogOut } from "react-icons/bi";
 import { IoSearchSharp } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import Header from "./Header";
 
 const productsMock = [
   {
@@ -29,25 +30,47 @@ const productsMock = [
 ];
 
 const ProductCard = ({ product, onEdit }) => (
-  <div className="bg-[#b87333] rounded-lg shadow p-4 text-center">
+  <div className="bg-white rounded-xl shadow-lg shadow-amber-200 p-6">
+  {/* Imagen del producto */}
+  <div className="flex justify-center rounded shadow-md border mb-4  ">
     <img
       src={product.image}
       alt="Campana"
-      className="mx-auto h-32 w-32 object-contain"
+      className="w-4/5 h-auto object-contain rounded-lg"
     />
-    <div className="mt-4 text-sm">
-      <p><strong>Material:</strong> {product.material}</p>
-      <p><strong>Tamaño:</strong> {product.size}</p>
-      <p><strong>Acabado:</strong> {product.finish}</p>
-      <p><strong>Precio:</strong> ${product.price}</p>
-    </div>
+  </div>
+
+  {/* Información del producto */}
+  <div className="space-y-2 text-gray-700">
+    <p className="text-lg font-bold flex items-center gap-2">
+      <LucidePenTool className="text-amber-500" />
+      Material: <span className="font-normal">{product.material}</span>
+    </p>
+    <p className="text-lg font-bold flex items-center gap-2">
+      <Ruler className="text-amber-500" />
+      Tamaño: <span className="font-normal">{product.size}</span>
+    </p>
+    <p className="text-lg font-bold flex items-center gap-2">
+      <Paintbrush className="text-amber-500" />
+      Acabado: <span className="font-normal">{product.finish}</span>
+    </p>
+    <p className="text-lg font-bold flex items-center gap-2">
+      <DollarSign className="text-amber-500" />
+      Precio: <span className="font-normal">${product.price}</span>
+    </p>
+  </div>
+
+  {/* Botón de acción */}
+  <div className="mt-4 flex justify-end">
     <button
-      className="bg-orange-500 text-white py-1 px-4 mt-4 rounded hover:bg-orange-600"
+      className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded flex items-center gap-2"
       onClick={() => onEdit(product)}
     >
+      <Edit />
       Editar
     </button>
   </div>
+</div>
 );
 
 const EditModal = ({ isOpen, product, onClose, onSave }) => {
@@ -268,47 +291,9 @@ const Productos_olf = () => {
   );
 
   return (
-    <div className="flex flex-col items-center bg-gray-50 min-h-screen">
-      <header className="bg-base text-white relative h-16 w-full">
-        <nav className="container mx-auto flex items-center justify-between px-32 py-2">
-          <Link to="/dashboard" className=""  >
-            <button className="bg-white hover:bg-letras p-3 rounded-full">
-              <Home className="h-6 w-6 text-base" />
-            </button>
-          </Link>
-          <Link to="/productosCampanas" className=""  >
-            <button className="text-2xl font-serif w-40 flex justify-center text-letras">
-              <FaBoxes className="mr-2 mt-1" />
-              Productos
-            </button>
-          </Link>
-          <Link to="/ventas" className=""  >
-            <button className="text-2xl font-serif w-40 flex justify-center hover:text-letras">
-              <GiMoneyStack className="mr-2 mt-1" />
-              Ventas
-            </button>
-          </Link>
-          <Link to="/" className=""  >
-            <button className="text-2xl font-serif w-40 flex justify-center hover:text-letras">
-              <BiLogOut className="mr-2 mt-1" />
-              Salir
-            </button>
-          </Link>
-        </nav>
-      </header>
-      <section className="py-3 mt-4 mb-4 flex justify-center space-x-6 ">
-        
-        <button
-          className='bg-base flex rounded-full text-white text-center absolute right-20'>
-          <p className='pl-3 pt-[6px]'>Agregar producto</p>
-          <p className='bg-letras ml-2 w-10 h-10 rounded-full text-2xl flex items-center justify-center'
-            onClick={() => setIsAddModalOpen(true)}
-
-          >
-            <Plus className='w-6 h-6' />
-          </p>
-        </button>
-
+    <div className="  min-h-screen bg-amber-100 w-screen">
+      <Header />
+      <section className="py-4 px-10  w-full mb-4 flex justify-between space-x-6 ">
         <nav className='flex justify-center'>
           <Link to="/productosCampanas" className="p-2"  >
             <button
@@ -332,6 +317,14 @@ const Productos_olf = () => {
             </button>
           </Link>
         </nav>
+        <button
+          className='bg-base flex rounded-full h-10 text-white text-center items-center  '
+          onClick={() => setIsAddModalOpen(true)}
+        >
+          <p className="px-2 text-lg font-bold" >Agregar producto</p>
+          <Plus className='bg-letras h-full w-auto rounded-full ' />
+
+        </button>
       </section>
 
       <div className="w-full max-w-6xl mx-auto  px-4">
@@ -353,7 +346,7 @@ const Productos_olf = () => {
 
 
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6 max-w-6xl mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6 px-10 ">
         {filteredProducts.map((product) => (
           <ProductCard key={product.id} product={product} onEdit={handleEdit} />
         ))}

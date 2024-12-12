@@ -1,3 +1,5 @@
+import uploadImageToImgBB from "./imgBBService";
+
 class CampanaService {
   constructor() {
     this.baseURL = "https://arcadelaalianzaserver.onrender.com";
@@ -99,6 +101,47 @@ class CampanaService {
     console.log(data)
     return data;
   }
+
+  async AddAcabado(finishData, files) {
+    console.log("Agregando acabado...");
+    const formData = new FormData();
+
+    const uploadedImages = [];
+    // Agregar archivos
+    for (const file of files) {
+      try {
+        const imageData = await uploadImageToImgBB(file);
+        uploadedImages.push(imageData); // Guarda la información de cada imagen
+      } catch (error) {
+        console.error(`Error al subir el archivo ${file.name}:`, error);
+      }
+    }
+    console.log(uploadedImages)
+
+    formData.append('bellFinish', JSON.stringify(finishData));
+
+    try {
+        const response = await fetch(`${this.baseURL}/bells/finish`, {
+            method: "POST",
+            headers: {
+                "Authorization": `Bearer ${this.token}`
+            },
+            body: formData
+        });
+
+        if (!response.ok) {
+            console.error("Error en la respuesta:", response.status, await response.text());
+            return null;
+        }
+
+        const data = await response.json(); // Cambiar a .text() si tu servidor no responde con JSON
+        console.log("Respuesta recibida:", data);
+        return data;
+    } catch (error) {
+        console.error("Error en la solicitud:", error);
+        return null;
+    }
+}
 
   async DeleteAcabado(id) {
     const response = await fetch(`${this.baseURL}/bells/finish/${id}`, {
