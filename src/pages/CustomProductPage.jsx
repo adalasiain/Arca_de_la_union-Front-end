@@ -6,10 +6,9 @@ import Products from '../core/components/PruebaProducts';
 const CustomProductPage = () => {
     return (
         <>
-            <div className="flex flex-col h-screen">
+            <div className="flex flex-col min-h-screen">
                 <NavBar />
-                <CustomizationProduct className="flex-grow"/>
-                <Products/>
+                <CustomizationProduct className="my-4"/>
                 <Footer />
             </div>
         </>

@@ -20,9 +20,9 @@ const CustomizationForm = ({
     <div className="w-full sm:w-3/5 flex flex-col justify-evenly p-4 md:p-12">
       {/* Opciones de selección */}
 
-      <div className="flex w-full space-x-4 mb-5">
+      <div className="flex flex-wrap lg:flex-nowrap lg:space-x-4 mb-5">
         {["Acabado", "Aleaciones", "Peso"].map((label, index) => (
-          <div key={index} className="flex justify-center w-1/3">
+          <div key={index} className="flex justify-center w-full mb-2 md:w-1/3">
             <select
               defaultValue="1"
               id={label.toLowerCase()}
@@ -63,8 +63,8 @@ const CustomizationForm = ({
       </div>
 
       {/* Detalles del producto */}
-      <div className="flex justify-evenly w-full space-x-8 mb-5">
-        <div className="flex flex-col space-y-2">
+      <div className="flex flex-col lg:flex-row w-full lg:space-x-8 mb-8 lg:mb-5">
+        <div className="flex flex-col lg:space-y-2 w-full lg:w-auto items-center">
           <div className="flex items-center">
             <b className="mr-2 md:text-xl">Peso:</b>
             <p className="md:text-xl">
@@ -81,7 +81,7 @@ const CustomizationForm = ({
             </p>
           </div>
         </div>
-        <div className="flex flex-col space-y-2">
+        <div className="flex flex-col lg:space-y-2 w-full lg:w-auto items-center">
           <div className="flex items-center">
             <b className="mr-2 md:text-xl">Tamaño:</b>
             <p className="md:text-xl">

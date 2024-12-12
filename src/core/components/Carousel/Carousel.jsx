@@ -47,7 +47,7 @@ const Carousel = ({ images }) => {
           className="bg-[#d8d9de] relative h-96 overflow-hidden
                 rounded-3xl md:h-136 "
         >
-          <div className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+          <div className="absolute block w-full h-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
             <img
               src="https://via.placeholder.com/600x600.png"
               alt="Imagen del producto"

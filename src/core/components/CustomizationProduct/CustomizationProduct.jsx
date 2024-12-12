@@ -78,13 +78,13 @@ const CustomizationProduct = () => {
   };
 
   const sendMessage = (orderId) => {
-    const phoneNumber = "5217713317692"; // Número del vendedor
+    const phoneNumber = "5217711980579"; // Número del vendedor
     const baseURL = "https://example.com"; 
     const orderURL = `${baseURL}/orders/${orderId}`; // URL dinámica para el pedido
   
-    const message = `New order created:\n\nAlloy: ${selectedAlloy?.type}\nFinish: ${selectedFinish?.finish}\nSize: ${selectedSize?.weight}kg\nTotal: $${total.toFixed(
+    const message = `Nuevo pedido realizado:\n\nAleaciòn: ${selectedAlloy?.type}\nAcabado: ${selectedFinish?.finish}\nPeso elegido: ${selectedSize?.weight}kg\nTotal: $${total.toFixed(
       2
-    )}\n\nCustomer: ${customer.name}\nPhone: ${customer.phone}\n\nView order details: ${orderURL}`;
+    )}\n\nCliente: ${customer.name}\nNùmero de Telèfono: ${customer.phone}\n\nVer mas detalles del pedido: ${orderURL}`;
   
     const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(whatsappURL, "_blank");
@@ -121,7 +121,7 @@ const CustomizationProduct = () => {
   };
 
   return (
-    <main className="flex flex-col items-center justify-center w-full h-full bg-[#b87333] bg-opacity-60 p-4">
+    <main className="flex flex-col flex-grow items-center justify-center w-full h-full bg-[#b87333] bg-opacity-60 p-4">
       <div className="flex flex-col sm:flex-row rounded-3xl bg-[#eeeeee] w-full max-w-6xl mx-auto shadow-lg">
         <ProductDetails
           finishImages={selectedFinish?.images}

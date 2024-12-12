@@ -2,23 +2,44 @@ import { createBrowserRouter } from 'react-router-dom';
 import HomePage from '../pages/HomePage';
 import ProductsPage from '../pages/ProductsPage';
 import CustomProductPage from '../pages/CustomProductPage';
-import LoginPage from '../pages/LoginPage';
+import ShoppingCart from '../pages/ShoppingCart';
+import GalleryPage from '../pages/GalleryPage';
+import ContactUsPage from '../pages/ContactUsPage';
+import AboutUsPage from '../pages/AboutUsPage';
+import ErrorPage from '../pages/ErrorPage';
 
 const Router = createBrowserRouter([
   {
     path: "/",
-    element: <HomePage />,
+    element: <HomePage />
   },
   {
     path: "/products",
-    element: <ProductsPage />,
+    element: <ProductsPage />
   },
   {
     path: "/customize-product",
-    element: <CustomProductPage />,
-  },{
-    path:"/login",
-    element: <LoginPage/>
+    element: <CustomProductPage />
+  },
+  /*{
+    path: "/shopping-cart",
+    element: <ShoppingCart />
+  },*/
+  {
+    path: '/gallery',
+    element: <GalleryPage />
+  },
+  {
+    path: '/contact-us',
+    element: <ContactUsPage />
+  },
+  {
+    path: '/about-us',
+    element: <AboutUsPage />
+  },
+  {
+    path: '*',
+    element: <ErrorPage />
   }
 ], {
   future: {

@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './HomeSections.css';
 import { useCarousel } from './Carousel';
 import fondo from '../../../assets/img/fondo.jpg';
@@ -7,6 +9,12 @@ import fondoCampana from '../../../assets/img/fondoCampana.png';
 function HomeSections() {
   const { getSlides, prevSlide, nextSlide, isAnimating1, isAnimating2 } = useCarousel();
   const { previous, current, next } = getSlides();
+
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/products');
+  };
 
   return (
     <div>
@@ -82,7 +90,9 @@ function HomeSections() {
               </div>
               <div className="grid grid-cols-12 gap-0 pb-0 md:pb-14">
                 <div className="col-span-12 pl-3">
-                  <button type="button" className="poppins text-base md:text-xl xl:text-2xl 2xl:text-3xl font-bold flex items-center text-white px-8 py-2 bg-[#b87333] hover:bg-[#ee9f05] focus:ring focus:outline-none focus:ring-[#ffbb05] rounded-full text-center">GALERÍA<svg className="w-6 h-6 md:w-7 md:h-7 xl:w-8 xl:h-8 2xl:w-10 2xl:h-10 ml-1 md:ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="white" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"><circle cx="12" cy="12" r="9"/><path d="m11 15l3-3l-3-3"/></g></svg></button>
+                  <Link to="/gallery">
+                    <button type="button" className="poppins text-base md:text-xl xl:text-2xl 2xl:text-3xl font-bold flex items-center text-white px-8 py-2 bg-[#b87333] hover:bg-[#ee9f05] focus:ring focus:outline-none focus:ring-[#ffbb05] rounded-full text-center">GALERÍA<svg className="w-6 h-6 md:w-7 md:h-7 xl:w-8 xl:h-8 2xl:w-10 2xl:h-10 ml-1 md:ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="white" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"><circle cx="12" cy="12" r="9"/><path d="m11 15l3-3l-3-3"/></g></svg></button>
+                  </Link>
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-0 hidden md:grid">
@@ -137,7 +147,13 @@ function HomeSections() {
                   <p className={`poppins text-black text-xs md:text-sm xl:text-base 2xl:text-lg font-normal text-justify transition-opacity transform ${isAnimating1 ? 'duration-500 opacity-60 select-none' : ''} ${isAnimating2 ? 'opacity-60 select-none' : ''}`}>{previous.description}</p>
                 </div>
                 <div className="row-span-2 rounded-b-[40px] flex justify-center">
-                  <button type="button" className={`poppins text-sm md:text-base xl:text-lg font-semibold flex justify-between items-center text-white px-4 md:px-6 lg:px-4 xl:px-6 2xl:px-8 w-full h-10 md:h-11 xl:h-12 mx-10 bg-black hover:bg-[#4c4c4c] focus:ring focus:outline-none focus:ring-[#989898] rounded-full transition-opacity transform ${isAnimating1 ? 'duration-500 opacity-60 pointer-events-none select-none' : ''} ${isAnimating2 ? 'duration-500 opacity-60 pointer-events-none select-none' : ''}`}>Detalles<svg className="w-6 h-6 md:w-7 md:h-7 xl:w-8 xl:h-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="white" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"><circle cx="12" cy="12" r="9"/><path d="m11 15l3-3l-3-3"/></g></svg></button>
+                  <button 
+                    type="button"
+                    onClick={handleClick}
+                    className={`poppins text-sm md:text-base xl:text-lg font-semibold flex justify-between items-center text-white px-4 md:px-6 lg:px-4 xl:px-6 2xl:px-8 w-full h-10 md:h-11 xl:h-12 mx-10 bg-black hover:bg-[#4c4c4c] focus:ring focus:outline-none focus:ring-[#989898] rounded-full transition-opacity transform ${isAnimating1 ? 'duration-500 opacity-60 pointer-events-none select-none' : ''} ${isAnimating2 ? 'duration-500 opacity-60 pointer-events-none select-none' : ''}`}
+                  >Detalles
+                    <svg className="w-6 h-6 md:w-7 md:h-7 xl:w-8 xl:h-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="white" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"><circle cx="12" cy="12" r="9"/><path d="m11 15l3-3l-3-3"/></g></svg>
+                  </button>
                 </div>
               </div>
               {/* Elemento 2 */}
@@ -150,7 +166,13 @@ function HomeSections() {
                   <p className={`poppins text-black text-xs md:text-sm xl:text-base 2xl:text-lg font-normal text-justify transition-opacity transform ${isAnimating1 ? 'duration-500 opacity-60 select-none' : ''} ${isAnimating2 ? 'opacity-60 select-none' : ''}`}>{current.description}</p>
                 </div>
                 <div className="row-span-2 rounded-b-[40px] flex justify-center opacity-95">
-                  <button type="button" className={`poppins text-sm md:text-base xl:text-lg font-semibold flex justify-between items-center text-white px-4 md:px-6 lg:px-4 xl:px-6 2xl:px-8 w-full h-10 md:h-11 xl:h-12 mx-10 bg-black hover:bg-[#4c4c4c] focus:ring focus:outline-none focus:ring-[#989898] rounded-full transition-opacity transform ${isAnimating1 ? 'duration-500 opacity-60 pointer-events-none select-none' : ''} ${isAnimating2 ? 'duration-500 opacity-60 pointer-events-none select-none' : ''}`}>Detalles<svg className="w-6 h-6 md:w-7 md:h-7 xl:w-8 xl:h-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="white" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"><circle cx="12" cy="12" r="9"/><path d="m11 15l3-3l-3-3"/></g></svg></button>
+                  <button 
+                      type="button"
+                      onClick={handleClick}
+                      className={`poppins text-sm md:text-base xl:text-lg font-semibold flex justify-between items-center text-white px-4 md:px-6 lg:px-4 xl:px-6 2xl:px-8 w-full h-10 md:h-11 xl:h-12 mx-10 bg-black hover:bg-[#4c4c4c] focus:ring focus:outline-none focus:ring-[#989898] rounded-full transition-opacity transform ${isAnimating1 ? 'duration-500 opacity-60 pointer-events-none select-none' : ''} ${isAnimating2 ? 'duration-500 opacity-60 pointer-events-none select-none' : ''}`}
+                    >Detalles
+                      <svg className="w-6 h-6 md:w-7 md:h-7 xl:w-8 xl:h-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="white" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"><circle cx="12" cy="12" r="9"/><path d="m11 15l3-3l-3-3"/></g></svg>
+                  </button>
                 </div>
                 <div className="absolute w-full h-10 h-[54%] flex flex-col justify-end">
                   <div className={`grid grid-cols-2 gap-0 ${isAnimating1 ? 'translate-x-[15%] pointer-events-none' : ''} ${isAnimating2 ? '-translate-x-[15%] pointer-events-none' : ''}`}>
@@ -173,7 +195,13 @@ function HomeSections() {
                   <p className={`poppins text-black text-xs md:text-sm xl:text-base 2xl:text-lg font-normal text-justify transition-opacity transform ${isAnimating1 ? 'duration-500 opacity-60 select-none' : ''} ${isAnimating2 ? 'opacity-60 select-none' : ''}`}>{next.description}</p>
                 </div>
                 <div className="row-span-2 rounded-b-[40px] flex justify-center">
-                  <button type="button" className={`poppins text-sm md:text-base xl:text-lg font-semibold flex justify-between items-center text-white px-4 md:px-6 lg:px-4 xl:px-6 2xl:px-8 w-full h-10 md:h-11 xl:h-12 mx-10 bg-black hover:bg-[#4c4c4c] focus:ring focus:outline-none focus:ring-[#989898] rounded-full transition-opacity transform ${isAnimating1 ? 'duration-500 opacity-60 pointer-events-none select-none' : ''} ${isAnimating2 ? 'duration-500 opacity-60 pointer-events-none select-none' : ''}`}>Detalles<svg className="w-6 h-6 md:w-7 md:h-7 xl:w-8 xl:h-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="white" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"><circle cx="12" cy="12" r="9"/><path d="m11 15l3-3l-3-3"/></g></svg></button>
+                  <button 
+                      type="button"
+                      onClick={handleClick}
+                      className={`poppins text-sm md:text-base xl:text-lg font-semibold flex justify-between items-center text-white px-4 md:px-6 lg:px-4 xl:px-6 2xl:px-8 w-full h-10 md:h-11 xl:h-12 mx-10 bg-black hover:bg-[#4c4c4c] focus:ring focus:outline-none focus:ring-[#989898] rounded-full transition-opacity transform ${isAnimating1 ? 'duration-500 opacity-60 pointer-events-none select-none' : ''} ${isAnimating2 ? 'duration-500 opacity-60 pointer-events-none select-none' : ''}`}
+                    >Detalles
+                      <svg className="w-6 h-6 md:w-7 md:h-7 xl:w-8 xl:h-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="white" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"><circle cx="12" cy="12" r="9"/><path d="m11 15l3-3l-3-3"/></g></svg>
+                  </button>
                 </div>
               </div>
             </div>
