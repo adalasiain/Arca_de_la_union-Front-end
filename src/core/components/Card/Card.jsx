@@ -10,13 +10,13 @@ const Card = ({ name, stock, price, description, image, isCustom, onAddToCart, o
         <img
           src={image?.url || 'https://via.placeholder.com/150'}
           alt={name}
-          className="rounded-lg object-cover w-auto h-40"
+          className="rounded-lg object-cover w-auto max-w-[207px] h-40"
         />
       </div>
 
       {/* Detalles del producto */}
       {isCustom ? (
-      <div className="mt-3 text-center">
+      <div className="mt-3 text-center max-w-[207px]">
           <h2 className="font-bold text-gray-800">¡Personaliza tu producto!</h2>
           <p>Haz que sea único</p>
           <p>¡Elige todos los detalles!</p>
@@ -33,7 +33,7 @@ const Card = ({ name, stock, price, description, image, isCustom, onAddToCart, o
           </button>
       </div>
       ) : (
-        <div className="mt-4 text-center">
+        <div className="mt-4 text-center max-w-[207px]">
           <h2 className="font-bold text-gray-800">{name}</h2>
           <p className="text-sm text-gray-600">{description}</p>
           <ul className="text-gray-800 text-sm font-medium mt-2">
