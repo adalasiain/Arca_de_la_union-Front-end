@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Link} from "react-router-dom";
+import ProductosService from "../../../services/ProductosServices";
 
-const Card = ({ peso, material, tamaño, acabado, precio, imagen, isCustom, onAddToCart, onCustomize }) => {
+const Card = ({ name, stock, price, description, image, isCustom, onAddToCart, onCustomize }) => {
   return (
     <div className="flex flex-col items-center bg-[#eeeeee] rounded-3xl p-4 shadow-lg min-w-72 sm:min-w-60">
       {/* Imagen del producto */}
       <div className="flex justify-center w-full bg-[#d8d9de] rounded-3xl">
         <img
-          src={imagen}
-          alt="Campana"
+          src={image?.url || 'https://via.placeholder.com/150'}
+          alt={name}
           className="rounded-lg object-cover w-auto h-40"
         />
       </div>
@@ -33,11 +34,10 @@ const Card = ({ peso, material, tamaño, acabado, precio, imagen, isCustom, onAd
       </div>
       ) : (
         <div className="mt-4 text-center">
-          <ul className="text-gray-800 text-sm font-medium">
-            <li><strong>Peso:</strong> {peso}</li>
-            <li><strong>Material:</strong> {material}</li>
-            <li><strong>Tamaño:</strong> {tamaño}</li>
-            <li><strong>Acabado:</strong> {acabado}</li>
+          <h2 className="font-bold text-gray-800">{name}</h2>
+          <p className="text-sm text-gray-600">{description}</p>
+          <ul className="text-gray-800 text-sm font-medium mt-2">
+            <li><strong>Stock:</strong> {stock}</li>
           </ul>
         </div>
       )}
@@ -46,13 +46,13 @@ const Card = ({ peso, material, tamaño, acabado, precio, imagen, isCustom, onAd
       {!isCustom && (
         <div className="flex items-center justify-around w-full mt-4">
           <button
-            onClick={() => onAddToCart({ peso, material, tamaño, acabado, precio, imagen })}
+            onClick={() => onAddToCart({ name, price, imagen: image?.url })}
             className="text-white text-center uppercase font-bold bg-[#ee9f05] hover:bg-orange-500 focus:ring-4 focus:outline-none focus:ring-orange-300 rounded-full text-sm px-4 py-2"
           >
             Comprar
           </button>
           <span className="text-xl font-bold text-gray-900">
-            ${precio}
+            ${price}
           </span>
         </div>
       )}
@@ -63,6 +63,23 @@ const Card = ({ peso, material, tamaño, acabado, precio, imagen, isCustom, onAd
 const CardList = ({ filter, searchTerm, onCustomize }) => {
   const [cart, setCart] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [products, setProducts] = useState([]);
+
+  const productosService = new ProductosService();
+
+  // Cargar productos del endpoint
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const fetchedProducts = await productosService.GetProductsList();
+        setProducts(fetchedProducts);
+      } catch (error) {
+        console.error("Error fetching products", error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   // Cargar el carrito desde LocalStorage al iniciar
   useEffect(() => {
@@ -79,32 +96,19 @@ const CardList = ({ filter, searchTerm, onCustomize }) => {
     }
   }, [cart]);
 
-  const cardsData = [
-    { peso: "70 Kg", material: "Bronce", tamaño: "30 x 70 cm", acabado: "Pulido", precio: 599, imagen: 'https://cdn-icons-png.flaticon.com/512/1827/1827312.png' },
-    { peso: "150 Kg", material: "Cobre", tamaño: "90 x 120 cm", acabado: "Esmalte", precio: 999, imagen: 'https://cdn-icons-png.flaticon.com/512/6650/6650802.png' },
-    { peso: "30 Kg", material: "Acero", tamaño: "15 x 30 cm", acabado: "Patina", precio: 299, imagen: 'https://www.iconpacks.net/icons/2/free-bell-icon-2031-thumb.png' },
-    { peso: "80 Kg", material: "Hierro", tamaño: "40 x 80 cm", acabado: "Mate", precio: 699, imagen: 'https://cdn-icons-png.flaticon.com/512/1827/1827312.png' },
-    { peso: "60 Kg", material: "Bronce", tamaño: "35 x 75 cm", acabado: "Satinado", precio: 549, imagen: 'https://cdn-icons-png.flaticon.com/512/6650/6650802.png' },
-    { peso: "45 Kg", material: "Acero Inoxidable", tamaño: "25 x 60 cm", acabado: "Pulido", precio: 499, imagen: 'https://cdn-icons-png.flaticon.com/512/1827/1827312.png' },
-    { peso: "90 Kg", material: "Latón", tamaño: "50 x 90 cm", acabado: "Antiguo", precio: 799, imagen: 'https://www.iconpacks.net/icons/2/free-bell-icon-2031-thumb.png' },
-    { peso: "110 Kg", material: "Aluminio", tamaño: "55 x 95 cm", acabado: "Brillante", precio: 849, imagen: 'https://cdn.icon-icons.com/icons2/1520/PNG/512/bellflat_106006.png' },
-  ];
-
-  const filteredCards = cardsData.filter((card) => {
-    const matchesFilter = filter === "all" || card.acabado.toLowerCase() === filter.toLowerCase();
-    const matchesSearch = 
-      card.material.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      card.acabado.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      card.tamaño.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      card.peso.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      card.precio.toString().includes(searchTerm);
-    
+  const filteredCards = products.filter((card) => {
+    const matchesFilter = filter === "all";
+    const matchesSearch =
+      card.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      card.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      card.price.toString().includes(searchTerm);
+   
     return matchesFilter && matchesSearch;
   });
 
   const addToCart = (product) => {
     setCart([...cart, product]);
-  };
+  }
 
   const removeFromCart = (index) => {
     const newCart = [...cart];
@@ -118,7 +122,7 @@ const CardList = ({ filter, searchTerm, onCustomize }) => {
 
   const handlePayment = () => {
     // Redirigir al enlace de WhatsApp con la información del carrito
-    const cartMessage = cart.map(item => `${item.material} - ${item.tamaño} - $${item.precio}`).join('%0A');
+    const cartMessage = cart.map(item => `${item.name} - $${item.price}`).join('%0A');
     const whatsappLink = `https://api.whatsapp.com/send/?phone=527711980579&text=Hola,+deseo+comprar+los+siguientes+artículos+de+mi+carrito.%0ACarrito:%0A${cartMessage}&type=phone_number&app_absent=0`;
     window.location.href = whatsappLink;
 
@@ -168,8 +172,8 @@ const CardList = ({ filter, searchTerm, onCustomize }) => {
                     <img src={item.imagen} alt="Producto" className="w-6 h-6" />
                   </div>
                   <div>
-                    <p className="font-medium">{item.material} - {item.tamaño}</p>
-                    <p className="text-gray-500 text-sm">${item.precio}</p>
+                    <p className="font-medium">{item.name}</p>
+                    <p className="text-gray-500 text-sm">${item.price}</p>
                   </div>
                   <button 
                     onClick={() => removeFromCart(index)} 
@@ -181,7 +185,7 @@ const CardList = ({ filter, searchTerm, onCustomize }) => {
               ))}
               <div className="mt-4 flex justify-between items-center">
                 <span className="text-xl font-bold">Total:</span>
-                <span className="text-xl font-bold">${cart.reduce((sum, item) => sum + item.precio, 0)}</span>
+                <span className="text-xl font-bold">${cart.reduce((sum, item) => sum + item.price, 0)}</span>
               </div>
               <button onClick={handlePayment} className="flex items-center justify-center w-full mt-6 text-white text-lg font-bold py-3 rounded-full bg-[#b87333] hover:bg-[#a27648] focus:ring focus:outline-none focus:ring-[#895c23]">
                 <p className="mr-2">Pagar</p>
@@ -198,15 +202,15 @@ const CardList = ({ filter, searchTerm, onCustomize }) => {
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 px-2 py-8">
           <Link to="/customize-product" >
             <Card
-              imagen="https://cdn-icons-png.flaticon.com/512/4226/4226577.png"
+              image={{ url: "https://cdn-icons-png.flaticon.com/512/4226/4226577.png" }}
               isCustom={true}
               onCustomize={onCustomize}
             />
           </Link>
           
-          {filteredCards.map((card, index) => (
+          {filteredCards.map((card) => (
             <Card 
-              key={index} 
+              key={card.id} 
               {...card} 
               onAddToCart={addToCart}
             />
