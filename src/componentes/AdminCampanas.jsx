@@ -297,7 +297,11 @@ const AcabadoCard = ({ acabado, onEdit, handleTrash }) => {
     return (
         <div className="bg-white rounded-xl shadow-lg shadow-amber-200 p-6">
             <h2 className="text-2xl font-bold mb-2">{acabado.finish}</h2>
-            <p className="text-gray-600 mb-4">{acabado.description}</p>
+            <div className="h-12 overflow-hidden text-ellipsis mb-4">
+                <p className="text-gray-600  whitespace-normal text-justify"
+            >{acabado.description}</p>
+            </div>
+            
             <div className="flex justify-center">
 
 
@@ -330,7 +334,7 @@ const AcabadoCard = ({ acabado, onEdit, handleTrash }) => {
 
             <hr className="border-base my-4" />
             <aside className="flex flex-col  gap-2 justify-end mt-3">
-                <button
+                {/* <button
                     className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded flex items-center gap-2"
                     onClick={onEdit}
                 >
@@ -340,7 +344,7 @@ const AcabadoCard = ({ acabado, onEdit, handleTrash }) => {
                 <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded flex items-center gap-2">
                     <FaPlus />
                     <span>Agregar imagen</span>
-                </button>
+                </button> */}
                 <button
                     className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded flex items-center gap-2"
                     onClick={() => handleTrash(acabado.id)}

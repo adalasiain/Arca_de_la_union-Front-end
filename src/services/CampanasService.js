@@ -118,15 +118,20 @@ class CampanaService {
     }
     console.log(uploadedImages)
 
-    formData.append('bellFinish', JSON.stringify(finishData));
+    const acabado ={
+      ...finishData, images:uploadedImages
+    }
+
+   
 
     try {
-        const response = await fetch(`${this.baseURL}/bells/finish`, {
+        const response = await fetch(`${this.baseURL}/bells/acabado`, {
             method: "POST",
             headers: {
+              "Content-Type": "application/json",
                 "Authorization": `Bearer ${this.token}`
             },
-            body: formData
+            body: JSON.stringify(acabado)
         });
 
         if (!response.ok) {

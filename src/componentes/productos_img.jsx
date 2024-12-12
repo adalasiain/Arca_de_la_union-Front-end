@@ -30,13 +30,13 @@ const productsMock = [
 ];
 
 const ProductCard = ({ product, onEdit }) => (
-  <div className="bg-white rounded-xl shadow-lg shadow-amber-200 p-6">
+  <div className="flex flex-col items-center bg-white rounded-3xl p-6 shadow-lg min-w-72 sm:min-w-60">
   {/* Imagen del producto */}
-  <div className="flex justify-center rounded shadow-md border mb-4  ">
+  <div className="flex justify-center  w-full rounded-lg border  ">
     <img
       src={product.image}
       alt="Campana"
-      className="w-4/5 h-auto object-contain rounded-lg"
+      className="w-auto h-40 object-contain "
     />
   </div>
 
@@ -260,7 +260,7 @@ const AddProductModal = ({ isOpen, onClose, onSave }) => {
   );
 };
 
-const Productos_olf = () => {
+const Productos = () => {
   const [products, setProducts] = useState(productsMock);
   const [searchQuery, setSearchQuery] = useState(""); // Estado para la barra de búsqueda
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
@@ -368,4 +368,4 @@ const Productos_olf = () => {
   );
 };
 
-export default Productos_olf;
+export default Productos;
