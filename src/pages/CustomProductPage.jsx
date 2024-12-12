@@ -1,6 +1,7 @@
 import NavBar from '../core/components/NavBar/NavBar';
 import CustomizationProduct from '../core/components/CustomizationProduct/CustomizationProduct';
 import Footer from '../core/components/Footer/Footer';
+import Products from '../core/components/PruebaProducts';
 
 const CustomProductPage = () => {
     return (

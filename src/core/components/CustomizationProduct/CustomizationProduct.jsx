@@ -2,50 +2,122 @@ import ProductDetails from "../ProductDetails/ProductDetails";
 import CustomizationForm from "../CustomizationForm/CustomizationForm";
 import { useEffect, useState } from "react";
 import CampanasService from "../../../services/CampanasService";
+import Modal from "../Modal/Modal";
+import PedidosService from "../../../services/PedidosService";
 
 const CustomizationProduct = () => {
   const [alloys, setAlloys] = useState([]);
   const [finishes, setFinishes] = useState([]);
   const [weightSizes, setWeightSizes] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [customNotes, setCustomNotes] = useState("");
+  const [selectedAlloy, setSelectedAlloy] = useState(null);
+  const [selectedFinish, setSelectedFinish] = useState(null);
+  const [selectedSize, setSelectedSize] = useState(null);
+  const [customer, setCustomer] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    mailingAddress: "",
+  });
+  const [order, setOrder] = useState({});
+  const [isOrderCreated, setIsOrderCreated] = useState(false);
+  const [errors, setErrors] = useState({}); // Estado para manejar errores
 
-  // Función para obtener los datos de la API
+  const total = selectedAlloy?.pricePerKg * selectedSize?.weight || 0;
+
+  // Obtener datos de la API
   const fetchData = async () => {
-    console.log("fetching data");
-    const newCampanasService = new CampanasService();
-    const response = await newCampanasService.GetBellOptions();
-    setAlloys(response?.alloys);
-    setFinishes(response?.finishes);
-    setWeightSizes(response?.weightSizes);
-
-    console.log(finishes);
+    try {
+      const newCampanasService = new CampanasService();
+      const response = await newCampanasService.GetBellOptions();
+      setAlloys(response?.alloys || []);
+      setFinishes(response?.finishes || []);
+      setWeightSizes(response?.weightSizes || []);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
   };
-  // carga de datos
+
   useEffect(() => {
     fetchData();
   }, []);
 
-  const [selectedAlloy, setSelectedAlloy] = useState(null);
-  const [selectedFinish, setSelectedFinish] = useState(null);
-  const [selectedSize, setSelectedSize] = useState(null);
-
-  // Funciones para manejar las selecciones
   const handleAlloyChange = (alloy) => {
-    // filtrar la aleación seleccionada
     const aleacion = alloys.find((a) => a.type === alloy);
-
     setSelectedAlloy(aleacion);
   };
 
   const handleFinishChange = (finish) => {
-    // filtrar el acabado seleccionado
     const acabado = finishes.find((f) => f.id === finish);
     setSelectedFinish(acabado);
   };
 
   const handleSizeChange = (size) => {
-    // filtrar el tamaño seleccionado
     const tamaño = weightSizes.find((w) => w.id === size);
     setSelectedSize(tamaño);
+  };
+
+  const handleCustomerDataChange = (e) => {
+    const { name, value } = e.target;
+    setCustomer((prev) => ({ ...prev, [name]: value }));
+  };
+
+  // Validar que todos los campos requeridos estén completos
+  const validateForm = () => {
+    const newErrors = {};
+    if (!selectedAlloy) newErrors.alloy = "Please select an alloy.";
+    if (!selectedFinish) newErrors.finish = "Please select a finish.";
+    if (!selectedSize) newErrors.size = "Please select a size.";
+    if (!customer.name) newErrors.name = "Name is required.";
+    if (!customer.email) newErrors.email = "Email is required.";
+    if (!customer.phone) newErrors.phone = "Phone number is required.";
+    if (!customer.mailingAddress) newErrors.address = "Mailing address is required.";
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const sendMessage = (orderId) => {
+    const phoneNumber = "5217711980579"; // Número del vendedor
+    const baseURL = "https://example.com"; 
+    const orderURL = `${baseURL}/orders/${orderId}`; // URL dinámica para el pedido
+  
+    const message = `Nuevo pedido realizado:\n\nAleaciòn: ${selectedAlloy?.type}\nAcabado: ${selectedFinish?.finish}\nPeso elegido: ${selectedSize?.weight}kg\nTotal: $${total.toFixed(
+      2
+    )}\n\nCliente: ${customer.name}\nNùmero de Telèfono: ${customer.phone}\n\nVer mas detalles del pedido: ${orderURL}`;
+  
+    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappURL, "_blank");
+  };
+
+  const handlePay = async () => {
+    if (!validateForm()) return; // Detener si la validación falla
+
+    try {
+      const newOrder = new PedidosService();
+      const data = {
+        alloy: selectedAlloy,
+        finish: selectedFinish,
+        weightSize: selectedSize,
+        totalPrice: total,
+        customNote: customNotes,
+        customer: customer,
+      };
+      await newOrder.addPedido(data);
+       // Guardar el pedido y obtener el ID generado
+    const savedOrder = await newOrder.addPedido(data);
+    const orderId = savedOrder.orderId; // Asegúrate de que el servicio devuelva un campo `id` único
+
+    setOrder(data);
+    setIsOrderCreated(true);
+
+    // Enviar mensaje con la URL dinámica
+    sendMessage(orderId)
+      console.log("Order created:", data);
+      setIsModalOpen(false);
+    } catch (error) {
+      console.error("Error creating order:", error);
+    }
   };
 
   return (
@@ -66,10 +138,25 @@ const CustomizationProduct = () => {
           selectedAlloy={selectedAlloy}
           selectedFinish={selectedFinish}
           selectedSize={selectedSize}
+          customNotes={customNotes}
+          setCustomNotes={setCustomNotes}
+          handlePay={() => setIsModalOpen(true)}
+          errors={errors}
         />
+
+        <Modal
+          isOpen={isModalOpen}
+          handleClose={() => setIsModalOpen(false)}
+          customerData={customer}
+          handleCustomerDataChange={handleCustomerDataChange}
+          handlePay={handlePay}
+          errors={errors}
+        />
+        
       </div>
     </main>
   );
 };
 
 export default CustomizationProduct;
+

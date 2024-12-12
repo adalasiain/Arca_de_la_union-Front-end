@@ -1,11 +1,18 @@
-const Modal = () => {
+const Modal = ({
+    isOpen,
+    handleClose,
+    customerData,
+    handleCustomerDataChange,
+    handlePay
+}) => {
 
-    const handleClose = () => {
-        // Cerrar el Modal
-    };
 
     return (
-        <div className="fixed inset-0 z-50 flex justify-center items-center bg-black bg-opacity-50">
+        <div className={`fixed ${
+            isOpen ? "block" : "hidden"
+        }
+        top-0 left-0 w-full h-full
+        inset-0 z-50 flex justify-center items-center bg-black bg-opacity-50`}>
             <div
                 id="popup-modal"
                 tabIndex="-1"
@@ -28,7 +35,9 @@ const Modal = () => {
                         <label htmlFor="username" className="absolute text-[#ee9f05] text-md font-bold -translate-y-3 top-26 z-10 origin-[0] bg-white px-3 ml-12 start-1">Your Username</label>
                         <input
                             type="text"
-                            name="username"
+                            name="name"
+                            value={customerData.name}
+                            onChange={handleCustomerDataChange}
                             id="username"
                             className="block p-3 w-full text-gray-900 bg-transparent rounded-2xl border-2 border-[#ee9f05] appearance-none focus:outline-none focus:ring-[#ee9f05] focus:border-[#ee9f05]"
                             placeholder="Username"
@@ -41,6 +50,8 @@ const Modal = () => {
                         <input
                             type="email"
                             name="email"
+                            value={customerData.email}
+                            onChange={handleCustomerDataChange}
                             id="email"
                             className="block p-3 w-full text-gray-900 bg-transparent rounded-2xl border-2 border-[#ee9f05] appearance-none focus:outline-none focus:ring-[#ee9f05] focus:border-[#ee9f05]"
                             placeholder="name@company.com"
@@ -53,8 +64,23 @@ const Modal = () => {
                         <input
                             type="tel"
                             name="phone"
+                            value={customerData.phone}
+                            onChange={handleCustomerDataChange}
                             id="phone"
                             placeholder="771 222 2222"
+                            className="block p-3 w-full text-gray-900 bg-transparent rounded-2xl border-2 border-[#ee9f05] appearance-none focus:outline-none focus:ring-[#ee9f05] focus:border-[#ee9f05]"
+                            required
+                        />
+                    </div>
+                    <div className="pt-5 mb-5 w-[90%]">
+                        <label htmlFor="address" className="absolute text-[#ee9f05] text-md font-bold -translate-y-3 top-26 z-10 origin-[0] bg-white px-3 ml-12 start-1">Your Address</label>
+                        <input
+                            type="tel"
+                            name="mailingAddress"
+                            value={customerData.mailingAddress}
+                            onChange={handleCustomerDataChange}
+                            id="address"
+                            placeholder="1234 Main St, City, State, 12345"
                             className="block p-3 w-full text-gray-900 bg-transparent rounded-2xl border-2 border-[#ee9f05] appearance-none focus:outline-none focus:ring-[#ee9f05] focus:border-[#ee9f05]"
                             required
                         />
@@ -64,6 +90,7 @@ const Modal = () => {
                         <button
                             type="button"
                             className="text-white bg-[#b87333] hover:bg-[#a27648] focus:ring focus:outline-none focus:ring-[#895c23] font-medium rounded-full px-8 py-2.5 flex items-center space-x-2"
+                            onClick={handlePay}
                         >
                             <span className="text-xl font-bold">Contactar</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="2em" viewBox="0 0 24 24">
@@ -74,6 +101,7 @@ const Modal = () => {
                             </svg>
                         </button>
                     </div>
+                    
                 </form>
             </div>
         </div>

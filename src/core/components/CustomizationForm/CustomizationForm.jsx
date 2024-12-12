@@ -1,3 +1,7 @@
+import { useEffect, useState } from "react";
+import CampanasService from "../../../services/CampanasService";
+import Modal from "../Modal/Modal";
+
 const CustomizationForm = ({
   alloys,
   finishes,
@@ -8,6 +12,9 @@ const CustomizationForm = ({
   selectedAlloy,
   selectedFinish,
   selectedSize,
+  customNotes,
+  setCustomNotes,
+  handlePay
 }) => {
   return (
     <div className="w-full sm:w-3/5 flex flex-col justify-evenly p-4 md:p-12">
@@ -101,6 +108,8 @@ const CustomizationForm = ({
           <textarea
             id="message"
             rows="4"
+            value={customNotes}
+            onChange={(e) => setCustomNotes(e.target.value)}
             className="block p-4 w-full text-gray-900 bg-transparent rounded-3xl border-2 border-[#ee9f05] appearance-none focus:outline-none focus:ring-[#ee9f05] focus:border-[#ee9f05]"
             placeholder="Describe si deseas añadir algún logo, imagen o diseño a tu producto"
           ></textarea>
@@ -115,6 +124,7 @@ const CustomizationForm = ({
           <button
             type="button"
             className="text-white bg-[#b87333] hover:bg-[#a27648] focus:ring focus:outline-none focus:ring-[#895c23] font-medium rounded-full px-8 py-2.5 flex items-center space-x-2"
+            onClick={handlePay}
           >
             <span className="text-xl font-bold">Pagar Ahora</span>
             <svg
@@ -130,6 +140,7 @@ const CustomizationForm = ({
               />
             </svg>
           </button>
+
         </div>
       </form>
     </div>
