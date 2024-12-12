@@ -176,7 +176,7 @@ const CardList = ({ filter, searchTerm, onCustomize }) => {
   const handlePayment = () => {
     // Redirigir al enlace de WhatsApp con la información del carrito
     const cartMessage = cart.map(item => `${item.material} - ${item.tamaño} - $${item.precio}`).join('%0A');
-    const whatsappLink = `https://api.whatsapp.com/send/?phone=527711980579&text=Hola+te+escribo+desde+el+enlace+de+WhatsApp.%0ACarrito:%0A${cartMessage}&type=phone_number&app_absent=0`;
+    const whatsappLink = `https://api.whatsapp.com/send/?phone=527711980579&text=Hola,+deseo+comprar+los+siguientes+artículos+de+mi+carrito.%0ACarrito:%0A${cartMessage}&type=phone_number&app_absent=0`;
     window.location.href = whatsappLink;
 
     // Borrar el carrito de LocalStorage después de pagar
@@ -203,12 +203,12 @@ const CardList = ({ filter, searchTerm, onCustomize }) => {
 
       {/* Carrito de Compras */}
       {isCartOpen && (
-        <div className="fixed top-0 right-0 w-96 h-full bg-white shadow-lg p-6 z-50 overflow-y-auto">
+        <div className="fixed top-0 right-0 w-[95%] max-w-96 h-full bg-[#eeeeee] shadow-lg p-6 z-50 overflow-y-auto">
           <div className="flex justify-between items-center mb-6">
-            <h2 className="text-2xl font-bold">Carrito de Compras</h2>
+            <h2 className="text-2xl font-bold pb-2 border-b">Carrito de Compras</h2>
             <button 
               onClick={toggleCart}
-              className="text-gray-600 hover:text-gray-900"
+              className="text-gray-600 hover:text-red-700"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -221,6 +221,9 @@ const CardList = ({ filter, searchTerm, onCustomize }) => {
             <>
               {cart.map((item, index) => (
                 <div key={index} className="flex justify-between items-center border-b py-2">
+                  <div>
+                    <img src={item.imagen} alt="Producto" className="w-6 h-6" />
+                  </div>
                   <div>
                     <p className="font-medium">{item.material} - {item.tamaño}</p>
                     <p className="text-gray-500 text-sm">${item.precio}</p>
@@ -237,8 +240,11 @@ const CardList = ({ filter, searchTerm, onCustomize }) => {
                 <span className="text-xl font-bold">Total:</span>
                 <span className="text-xl font-bold">${cart.reduce((sum, item) => sum + item.precio, 0)}</span>
               </div>
-              <button onClick={handlePayment} className="w-full mt-6 bg-green-500 text-white text-lg font-bold py-2 rounded-full hover:bg-green-600">
-                Pagar
+              <button onClick={handlePayment} className="flex items-center justify-center w-full mt-6 text-white text-lg font-bold py-3 rounded-full bg-[#b87333] hover:bg-[#a27648] focus:ring focus:outline-none focus:ring-[#895c23]">
+                <p className="mr-2">Pagar</p>
+                <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" viewBox="0 0 24 24">
+                  <g fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="12" cy="12" r="10"/><path strokeLinecap="round" d="M12 6v12m3-8.5C15 8.12 13.657 7 12 7S9 8.12 9 9.5s1.343 2.5 3 2.5s3 1.12 3 2.5s-1.343 2.5-3 2.5s-3-1.12-3-2.5"/></g>
+                </svg>
               </button>
             </>
           )}
