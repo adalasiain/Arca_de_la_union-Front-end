@@ -60,63 +60,6 @@ const Card = ({ peso, material, tamaño, acabado, precio, imagen, isCustom, onAd
   );
 };
 
-const ShoppingCart = ({ cart, onRemoveFromCart, onClose }) => {
-  const total = cart.reduce((sum, item) => sum + item.precio, 0);
-
-  // Generar mensaje de carrito para enviar por WhatsApp
-  const generateWhatsAppMessage = () => {
-    const message = cart.map(item => {
-      return `${item.material} - ${item.tamaño}: $${item.precio}`;
-    }).join('\n');
-
-    const totalMessage = `\nTotal: $${total}`;
-    return `Hola, Aquí está mi carrito de compras:\n\n${message}${totalMessage}`;
-  };
-
-  // URL de WhatsApp con el mensaje
-  const whatsappLink = `https://api.whatsapp.com/send/?phone=527711980579&text=${encodeURIComponent(generateWhatsAppMessage())}&type=phone_number&app_absent=0`;
-
-  return (
-    <div className="fixed top-0 right-0 w-96 h-full bg-white shadow-lg p-6 z-50 overflow-y-auto">
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold">Carrito de Compras</h2>
-        <button onClick={onClose} className="text-gray-600 hover:text-gray-900">
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-      </div>
-      {cart.length === 0 ? (
-        <p className="text-gray-500">Tu carrito está vacío</p>
-      ) : (
-        <>
-          {cart.map((item, index) => (
-            <div key={index} className="flex justify-between items-center border-b py-2">
-              <div>
-                <p className="font-medium">{item.material} - {item.tamaño}</p>
-                <p className="text-gray-500 text-sm">${item.precio}</p>
-              </div>
-              <button onClick={() => onRemoveFromCart(index)} className="text-red-500 hover:text-red-700">
-                Eliminar
-              </button>
-            </div>
-          ))}
-          <div className="mt-4 flex justify-between items-center">
-            <span className="text-xl font-bold">Total:</span>
-            <span className="text-xl font-bold">${total}</span>
-          </div>
-          <button
-            onClick={() => window.open(whatsappLink, '_blank')}
-            className="w-full mt-4 bg-green-500 text-white py-2 rounded-full hover:bg-green-600"
-          >
-            Enviar por WhatsApp
-          </button>
-        </>
-      )}
-    </div>
-  );
-};
-
 const CardList = ({ filter, searchTerm, onCustomize }) => {
   const [cart, setCart] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
