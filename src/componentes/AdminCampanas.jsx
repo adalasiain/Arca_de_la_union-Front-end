@@ -97,7 +97,7 @@ function AdminCampanas() {
         <Header />
         <h1 className="text-3xl py-3 font-bold flex font-letras items-center gap-5">  <Bell size={50} /> Adminstracion de Campanas</h1>
 
-        <main className="w-full h-full px-10 flex flex-col md:flex-row gap-2">
+        <main className="w-full h-full sm:px-10 flex flex-col md:flex-row gap-2">
             <div className="bg-white md:w-1/5 w-full h-full rounded shadow border">
                 <nav className='flex md:flex-col flex-row justify-center w-full  rounded gap-4 p-3'>
                     <button
@@ -119,7 +119,7 @@ function AdminCampanas() {
 
             </div>
             {
-                selectedSection === "aleaciones" && <div className="w-full  rounded  px-5 py-3">
+                selectedSection === "aleaciones" && <div className="w-full  rounded  sm:px-5 py-3">
                     <div className="flex px-5 py-2 border-b-2 border-base justify-between items-center">
                         <h1 className="text-4xl font-medium">
                             Aleaciones
