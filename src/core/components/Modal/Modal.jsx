@@ -75,7 +75,7 @@ const Modal = ({
                     <div className="pt-5 mb-5 w-[90%]">
                         <label htmlFor="address" className="absolute text-[#ee9f05] text-md font-bold -translate-y-3 top-26 z-10 origin-[0] bg-white px-3 ml-12 start-1">Your Address</label>
                         <input
-                            type="tel"
+                            type="text"
                             name="mailingAddress"
                             value={customerData.mailingAddress}
                             onChange={handleCustomerDataChange}
