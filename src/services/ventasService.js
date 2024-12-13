@@ -49,6 +49,24 @@ class VentasService {
         console.log(data)
         return data;
     }
+
+    async FinalizeOrder(orderId) {
+        const response = await fetch(`${this.baseUrl}/orders/${orderId}/finalize`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${this.token}`
+          }
+    
+        }
+        )
+        if (!response.ok) {
+          console.log("error ")
+        }
+        const data = await response.text()
+        console.log(data)
+        return data;
+      }
 }
 
 
