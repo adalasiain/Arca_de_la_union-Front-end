@@ -172,16 +172,16 @@ const Gallery = () => {
                 <div style={{ width: '100%', height: '100%', borderRadius: '3rem', overflow: 'hidden' }}>
                   <img
                     src={project?.image.url} // Usa la URL de la imagen del producto
-                    alt={project?.name}
+                    alt={project?.material}
                     style={{ width: '100%', maxHeight: '250px', height: '100%', objectFit: 'cover' }}
                   />
                 </div>
               </div>
               <div style={{ flex: 1, padding: '1rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                 <div>
-                  <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', color: '#78350F', marginBottom: '0.5rem' }}>{project?.name}</h3>
+                  <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', color: '#78350F', marginBottom: '0.5rem' }}>{project?.material}</h3>
                   <p style={{ fontSize: '0.875rem', color: '#4A5568', overflow: 'hidden', display: '-webkit-box', WebkitBoxOrient: 'vertical', WebkitLineClamp: 3 }}>
-                    {project?.description}
+                    {project?.material} - {project?.tamanio} - {project?.acabado}
                   </p>
                 </div>
               </div>

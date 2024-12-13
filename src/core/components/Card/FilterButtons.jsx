@@ -72,6 +72,16 @@ const FilterButtons = ({
         >
           Patina
         </button>
+        <button
+          className={`px-4 py-2 rounded-full font-bold ${
+            activeFilter === "brillante"
+              ? "bg-[#ee9f05] text-white"
+              : "bg-white text-[#ee9f05] hover:bg-[#ffb300] hover:text-white"
+          }`}
+          onClick={() => handleFilter("brillante")}
+        >
+          Brillante
+        </button>
       </div>
 
       {/* Campo de Búsqueda */}
