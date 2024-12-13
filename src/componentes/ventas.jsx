@@ -28,14 +28,14 @@ const Ventas = () => {
     costoFinal: ''
   });
 
-const ventasS =new  VentasService()
-  useEffect(()=>{
-    async function getVentas(){
+  const ventasS = new VentasService()
+  useEffect(() => {
+    async function getVentas() {
       const data = await ventasS.getVentas()
       setVentas(data)
     }
     getVentas()
-  },[])
+  }, [])
 
   // Función para añadir un nuevo trabajo
   const handleNuevoTrabajo = () => {
@@ -66,18 +66,17 @@ const ventasS =new  VentasService()
   return (
     <div>
       {/* Navbar */}
-      <Header/>
+      <Header />
 
       {/* Filtro */}
       <section className="py-3 mt-4 mb-4 flex justify-center space-x-6">
         {["En Proceso", "Hechas"].map((tab) => (
           <button
             key={tab}
-            className={`px-6 py-2 text-sm font-medium rounded-full transition ${
-              activeTab === tab
+            className={`px-6 py-2 text-sm font-medium rounded-full transition ${activeTab === tab
                 ? "bg-base text-white shadow-md"
                 : "bg-white text-base border border-base hover:shadow"
-            }`}
+              }`}
             onClick={() => setActiveTab(tab)}
           >
             {tab}
@@ -95,42 +94,51 @@ const ventasS =new  VentasService()
       </section>
 
       {/* Lista de Trabajos */}
-      <div className="p-3 rounded-xl ml-48 mt-5 bg-div w-[70%] h-[400px] justify-center">
-      <table className="table-auto w-full border border-gray-200">
+      <div className="p-3 rounded-xl mx-10 mt-5 bg-div  justify-center">
+        <table className="table-auto w-full border border-gray-200">
           <thead>
             <tr className="bg-gray-100">
-              <th className="px-4 py-2 border">Customer</th>
-              <th className="px-4 py-2 border">Alloy</th>
-              <th className="px-4 py-2 border">Finish</th>
-              <th className="px-4 py-2 border">Weight Size</th>
+              <th className="px-4 py-2 border">Cliente</th>
+              <th className="px-4 py-2 border">Aleacion</th>
+              <th className="px-4 py-2 border">Acabado</th>
+              <th className="px-4 py-2 border">Peso y tamaño</th>
               <th className="px-4 py-2 border">total</th>
+              <th>acciones</th>
             </tr>
           </thead>
           <tbody>
             {ventas?.map((order, index) => (
               <tr
                 key={order.orderId}
-                className={`border ${
-                  !order.customer || !order.alloy || !order.finish || !order.weightSize
+                className={`border ${!order.customer || !order.alloy || !order.finish || !order.weightSize
                     ? "bg-red-100"
                     : "bg-white"
-                }`}
+                  }`}
               >
-                
-                <td className="px-4 py-2 border">
+
+                <td className="px-4 py-3 border">
                   {order.customer ? order?.customer?.name : "N/A"}
                 </td>
                 <td className="px-4 py-2 border">{order?.alloy?.type || "N/A"}</td>
                 <td className="px-4 py-2 border">{order?.finish?.finish || "N/A"}</td>
                 <td className="px-4 py-2 border">{order?.weightSize?.weight || "N/A"}</td>
                 <td className="px-4 py-2 border">{order?.totalPrice || "N/A"}</td>
+                <td className='px-4 py-2 border '> {/* Enlace para ir al detalle del pedido */}
+                  <div className=" text-center">
+                    <Link
+                      to={`/ventas/${order.orderId}`} // Enlace dinámico al detalle del pedido
+                      className="px-6 py-2 bg-amber-600 text-white rounded-full shadow-lg hover:bg-amber-700 transition duration-200 ease-in-out"
+                    >
+                      Ver Detalles
+                    </Link>
+                  </div></td>
               </tr>
             ))}
           </tbody>
         </table>
         {activeTab === "En Proceso" ? (
 
-          
+
           trabajosEnProceso.map((trabajo, index) => (
             <div key={index} className="bg-white rounded my-2 p-4 relative">
               <div className="flex justify-between items-center">
@@ -202,13 +210,13 @@ const ventasS =new  VentasService()
               onChange={(e) => setNuevoTrabajo({ ...nuevoTrabajo, costoFinal: e.target.value })} className="w-full mb-2 p-2 border border-base rounded" />
 
             <div className="flex justify-end space-x-2 mt-5">
-              <button 
+              <button
                 onClick={() => setModalNuevoTrabajo(false)}
                 className="bg-letras text-white p-2 rounded"
               >
                 Cancelar
               </button>
-              <button 
+              <button
                 onClick={handleNuevoTrabajo}
                 className="bg-base text-white p-2 rounded"
               >

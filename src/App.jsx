@@ -14,6 +14,7 @@ import ProductInterface from './componentes/productos_campanas';
 import { useAuth } from './context/AuthContext';
 import AdminCampanas from './componentes/AdminCampanas';
 import Productos from './componentes/AdminProductos';
+import OrderDetails from './componentes/OrderDetails';
 
 
 const App = () => {
@@ -27,6 +28,7 @@ const App = () => {
         <Route path="/ventas" element={<Ventas />} />
         <Route path="/campanas" element={<AdminCampanas />} />
         <Route path="/productos" element={<Productos/>} />
+        <Route path="/ventas/:orderId" element={<OrderDetails />} />
         {/* <Route path="/productosOlfebreria" element={<Productos_olf />} />
         <Route path="/productosCampanas" element={<ProductInterface />} /> */}
         <Route path="*" element={<ErrorPage />} />
