@@ -79,7 +79,7 @@ const CustomizationProduct = () => {
 
   const sendMessage = (orderId) => {
     const phoneNumber = "5217711980579"; // Número del vendedor
-    const baseURL = "https://example.com"; 
+    const baseURL = "https://ventadecampanasarcadelaalianza.onrender.com"; 
     const orderURL = `${baseURL}/orders/${orderId}`; // URL dinámica para el pedido
   
     const message = `Nuevo pedido realizado:\n\nAleaciòn: ${selectedAlloy?.type}\nAcabado: ${selectedFinish?.finish}\nPeso elegido: ${selectedSize?.weight}kg\nTotal: $${total.toFixed(
@@ -103,7 +103,7 @@ const CustomizationProduct = () => {
         customNote: customNotes,
         customer: customer,
       };
-      await newOrder.addPedido(data);
+     
        // Guardar el pedido y obtener el ID generado
     const savedOrder = await newOrder.addPedido(data);
     const orderId = savedOrder.orderId; // Asegúrate de que el servicio devuelva un campo `id` único
