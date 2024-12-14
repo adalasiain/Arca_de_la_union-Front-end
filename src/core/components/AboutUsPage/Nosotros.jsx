@@ -35,7 +35,7 @@ const ProjectSection = () => {
                     {/* Imagen */}
                     <div className="mb-6 md:mb-0 md:mr-8 md:w-1/3">
                         <img
-                            src="/img/img2.jpeg"
+                            src="/img/img3.jpeg"
                             alt="Trabajo artesanal"
                             className="rounded-lg object-cover shadow-md"
                         />
