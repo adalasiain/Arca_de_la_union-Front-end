@@ -2,7 +2,7 @@ import React from 'react';
 
 const AboutUs = () => {
     return (
-        <div className="flex-grow flex justify-center bg-[url('/img/backgroundProducts.jpg')] bg-cover sm:bg-center sm:bg-no-repeat py-12">
+        <div className="flex justify-center min-h-screen bg-[url('/img/backgroundProducts.jpg')] bg-cover sm:bg-center sm:bg-no-repeat py-12">
             <div className="flex flex-col items-center gap-14 w-[85%] bg-[#eeeeee] bg-opacity-70 rounded-3xl shadow-lg">
                 {/* Sección 1 */}
                 <div className='w-[88%]'>
@@ -15,7 +15,7 @@ const AboutUs = () => {
                         </p>
                         <div className="lg:w-1/3">
                             <img
-                                src='https://pueblosmexico.com.mx/public/img/arton29700.webp'
+                                src="/img/img3.jpeg"
                                 alt="Proyecto artesanal"
                                 className="w-full lg:min-h-[280px] rounded-3xl object-cover shadow-md"
                             />
@@ -51,7 +51,7 @@ const AboutUs = () => {
                     <div className="flex flex-col gap-8 lg:flex-row lg:items-center">
                         <div className="lg:w-1/3">
                             <img
-                                src="/img/img2.jpeg"
+                                src="/img/img4.jpeg"
                                 alt="Trabajo artesanal"
                                 className="w-full lg:min-h-[300px] rounded-3xl object-cover shadow-md"
                             />
