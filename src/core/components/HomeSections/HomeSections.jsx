@@ -85,7 +85,7 @@ function HomeSections() {
               </div>
               <div className="grid grid-cols-12 gap-0 pb-4 md:pb-8">
                 <div className="col-span-12">
-                  <p className="poppins text-white text-sm md:text-lg lg:text-base xl:text-lg 2xl:text-xl font-normal">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+                  {/* <p className="poppins text-white text-sm md:text-lg lg:text-base xl:text-lg 2xl:text-xl font-normal">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p> */}
                 </div>
               </div>
               <div className="grid grid-cols-12 gap-0 pb-0 md:pb-14">
