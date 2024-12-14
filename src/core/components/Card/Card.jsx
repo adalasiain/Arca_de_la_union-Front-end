@@ -2,13 +2,13 @@ import React from "react";
 
 const Card = ({ peso, material, tamaño, acabado, precio }) => {
   return (
-    <div className="flex flex-col items-center bg-gradient-to-b from-gray-200 via-gray-100 to-gray-50 rounded-lg p-4 w-64 shadow-lg">
+    <div className="flex flex-col items-center bg-[#eeeeee] rounded-3xl p-4 shadow-lg min-w-72 sm:min-w-60">
       {/* Imagen del producto */}
-      <div>
+      <div className="flex justify-center w-full bg-[#d8d9de] rounded-3xl">
         <img
-          src="/img/img.jpeg" // Asegúrate de que esta ruta sea correcta
+          src="/img/img.png"
           alt="Campana"
-          className="rounded-lg object-cover w-32 h-32"
+          className="rounded-lg object-cover w-32 h-40"
         />
       </div>
 
@@ -30,7 +30,7 @@ const Card = ({ peso, material, tamaño, acabado, precio }) => {
             .map((_, index) => (
               <svg
                 key={index}
-                className="w-4 h-4 text-yellow-300"
+                className="w-4 h-4 text-yellow-400"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
@@ -40,7 +40,7 @@ const Card = ({ peso, material, tamaño, acabado, precio }) => {
               </svg>
             ))}
           <svg
-            className="w-4 h-4 text-gray-200 dark:text-gray-600"
+            className="w-4 h-4 text-gray-300"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="currentColor"
@@ -49,21 +49,21 @@ const Card = ({ peso, material, tamaño, acabado, precio }) => {
             <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
           </svg>
         </div>
-        <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">
+        <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded ml-3">
           5.0
         </span>
       </div>
 
       {/* Precio y Botón */}
-      <div className="flex items-center justify-between w-full mt-4">
-        <span className="text-xl font-bold text-gray-900 dark:text-white">
-          ${precio}
-        </span>
+      <div className="flex items-center justify-around w-full mt-4">
         <button
-          className="text-white bg-orange-700 hover:bg-orange-800 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-4 py-1 text-center dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800"
+          className="text-white text-center uppercase font-bold bg-[#ee9f05] hover:bg-orange-500 focus:ring-4 focus:outline-none focus:ring-orange-300 rounded-full text-sm px-4 py-2"
         >
           Comprar
         </button>
+        <span className="text-xl font-bold text-gray-900">
+          ${precio}
+        </span>
       </div>
     </div>
   );
@@ -82,8 +82,8 @@ const CardList = () => {
   ];
 
   return (
-    <div className="bg-orange-50 min-h-screen flex items-center justify-center">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-8">
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 px-2 py-8">
         {cardsData.map((card, index) => (
           <Card key={index} {...card} />
         ))}
