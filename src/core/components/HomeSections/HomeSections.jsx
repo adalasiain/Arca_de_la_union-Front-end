@@ -85,12 +85,14 @@ function HomeSections() {
               </div>
               <div className="grid grid-cols-12 gap-0 pb-4 md:pb-8">
                 <div className="col-span-12">
-                  {/* <p className="poppins text-white text-sm md:text-lg lg:text-base xl:text-lg 2xl:text-xl font-normal">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p> */}
+                  <p className="poppins text-white text-sm md:text-lg lg:text-base xl:text-lg 2xl:text-xl font-normal">Desde 1970, unimos tradición y artesanía para crear campanas únicas, llenas de historia y calidad. Cada pieza refleja nuestra pasión y herencia cultural, ofreciendo funcionalidad y belleza en cada detalle.</p>
+                  <br></br>
+                  <p className="poppins text-white text-sm md:text-lg lg:text-base xl:text-lg 2xl:text-xl font-normal">Descubre en nuestro catálogo campanas que marcarán momentos especiales y embellecerán tus espacios. ¡Somos tradición que resuena en cada generación!</p>
                 </div>
               </div>
               <div className="grid grid-cols-12 gap-0 pb-0 md:pb-14">
                 <div className="col-span-12 pl-3">
-                  <Link to="/gallery">
+                  <Link to="/gallery" className="inline-block rounded-full">
                     <button type="button" className="poppins text-base md:text-xl xl:text-2xl 2xl:text-3xl font-bold flex items-center text-white px-8 py-2 bg-[#b87333] hover:bg-[#ee9f05] focus:ring focus:outline-none focus:ring-[#ffbb05] rounded-full text-center">GALERÍA<svg className="w-6 h-6 md:w-7 md:h-7 xl:w-8 xl:h-8 2xl:w-10 2xl:h-10 ml-1 md:ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="white" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"><circle cx="12" cy="12" r="9"/><path d="m11 15l3-3l-3-3"/></g></svg></button>
                   </Link>
                 </div>
